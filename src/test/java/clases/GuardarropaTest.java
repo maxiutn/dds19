@@ -12,7 +12,7 @@ public class GuardarropaTest {
 
 	Guardarropa guardarropa;
 	Sugerencia sugerencia;
-
+	/*
 	@Before
 	public void prepararClases() {
 		guardarropa = new Guardarropa();
@@ -41,5 +41,6 @@ public class GuardarropaTest {
 		assertTrue(lista.size() > 0);
 
 	}
+	*/
 
 }

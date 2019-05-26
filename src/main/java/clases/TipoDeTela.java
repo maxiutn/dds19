@@ -22,5 +22,9 @@ public class TipoDeTela {
 	public ArrayList<String> prendasAdmitidas() {
 		return prendasAdmitidas;
 	}
+	
+	public boolean coincideConElTipoDePrenda(TipoDePrenda unaPrenda) {
+		return prendasAdmitidas.contains(unaPrenda.tipo());
+	}
 
 }

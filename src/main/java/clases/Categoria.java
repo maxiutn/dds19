@@ -8,6 +8,10 @@ public class Categoria {
 		categoria = unaCategoria;
 	}
 	
+	public boolean coincideConElTipoDePrenda(TipoDePrenda unTipo) {
+		return categoria == unTipo.categoriaAdmitida();
+	}
+	
 	public String categoria () {
 		return categoria;
 	}

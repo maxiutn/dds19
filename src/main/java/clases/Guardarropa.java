@@ -5,17 +5,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Guardarropa {
+	
+	private int idGuardarropa;
 
 	private List<Sugerencia> sugerencias;
 	
-	private ArrayList<Prenda> prendasTorso = new ArrayList<Prenda>();
-	private ArrayList<Prenda> prendasPiernas = new ArrayList<Prenda>();
-	private ArrayList<Prenda> calzados = new ArrayList<Prenda>();
-	private ArrayList<Prenda> accesorios = new ArrayList<Prenda>();
-
-	public Guardarropa() {
+	private ArrayList<Prenda> listaDeIndumentarias = new ArrayList<Prenda>();
+	
+	
+	public Guardarropa(int unID) {
 		super();
 		sugerencias = new ArrayList<Sugerencia>();
+		idGuardarropa = unID;
 
 	}
 
@@ -37,34 +38,23 @@ public class Guardarropa {
 		this.getSugerencias().add(sugerencia);
 	}
 	
+	public ArrayList<Prenda> getIndumentarias() {
+		return listaDeIndumentarias;
+	}
 	
 	public void agregarIndumentaria(Prenda unaIndumentaria) {
-		switch(unaIndumentaria.categoria().categoria())
-		{
-		case "torso" :
-			prendasTorso.add(unaIndumentaria);
-		case "piernas" :
-			prendasPiernas.add(unaIndumentaria);
-		case "calzado" :
-			calzados.add(unaIndumentaria);
-		case "accesorio" :
-			accesorios.add(unaIndumentaria);
-		}
+		listaDeIndumentarias.add(unaIndumentaria);
 	}
 	
-	public ArrayList<Prenda> prendasTorso() {
-		return prendasTorso;
+	public boolean hayPrendaDelMismoColor(TipoDePrenda unTipo,String color) { //Verifica si hay una prenda con ese color
+		return listaDeIndumentarias.stream().filter(prenda -> this.sonDelMismoTipo(prenda, unTipo) ).map(p -> p.colorPrincipal()).collect(Collectors.toList()).contains(color);
 	}
 	
-	public ArrayList<Prenda> prendasPiernas() {
-		return prendasPiernas;
+	public boolean sonDelMismoTipo(Prenda unaPrenda, TipoDePrenda unTipo) {
+		return unaPrenda.tipoDePrenda().tipo() == unTipo.tipo();
 	}
 	
-	public ArrayList<Prenda> calzados() {
-		return calzados;
-	}
-	
-	public ArrayList<Prenda> accesorios() {
-		return accesorios;
+	public int getIdGuardarropa() {
+		return idGuardarropa;
 	}
 }
