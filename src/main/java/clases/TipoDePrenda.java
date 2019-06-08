@@ -3,20 +3,19 @@ package clases;
 public class TipoDePrenda {
 	
 	private String tipo;
-	private String categoriaAdmitida;
+	private String categoriaAdecuada;
 	
-	
-	public TipoDePrenda(String unTipo, String unaCategoria) {
+	public TipoDePrenda(String unTipo,String ca) {
 		tipo = unTipo;
-		categoriaAdmitida = unaCategoria;
-	}
-	
-	public String categoriaAdmitida() {
-		return categoriaAdmitida;
+		categoriaAdecuada = ca;
 	}
 	
 	public String tipo() {
 		return tipo;
+	}
+	
+	public String categoriaAdecuada() {
+		return categoriaAdecuada;
 	}
 
 }

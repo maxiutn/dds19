@@ -5,19 +5,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Guardarropa {
-	
-	private int idGuardarropa;
 
 	private List<Sugerencia> sugerencias;
 	
-	private ArrayList<Prenda> listaDeIndumentarias = new ArrayList<Prenda>();
+	ArrayList<Prenda> parteSuperior = new ArrayList<Prenda>();
+	ArrayList<Prenda> parteInferior = new ArrayList<Prenda>();
+	ArrayList<Prenda> calzado = new ArrayList<Prenda>();
+	ArrayList<Prenda> accesorio = new ArrayList<Prenda>();
 	
 	
-	public Guardarropa(int unID) {
+	public Guardarropa() {
 		super();
 		sugerencias = new ArrayList<Sugerencia>();
-		idGuardarropa = unID;
-
 	}
 
 	public List<Sugerencia> getSugerencias() {
@@ -38,23 +37,31 @@ public class Guardarropa {
 		this.getSugerencias().add(sugerencia);
 	}
 	
-	public ArrayList<Prenda> getIndumentarias() {
-		return listaDeIndumentarias;
+	public void guardar(Prenda d) {
+		switch(d.categoria()) {
+			case "parteSuperior":
+				parteSuperior.add(d);
+			case "parteInferior":
+				parteInferior.add(d);
+			case "calzado":
+				calzado.add(d);
+			case "accesorio":
+				accesorio.add(d);
+		}
 	}
 	
-	public void agregarIndumentaria(Prenda unaIndumentaria) {
-		listaDeIndumentarias.add(unaIndumentaria);
-	}
-	
-	public boolean hayPrendaDelMismoColor(TipoDePrenda unTipo,String color) { //Verifica si hay una prenda con ese color
-		return listaDeIndumentarias.stream().filter(prenda -> this.sonDelMismoTipo(prenda, unTipo) ).map(p -> p.colorPrincipal()).collect(Collectors.toList()).contains(color);
-	}
-	
-	public boolean sonDelMismoTipo(Prenda unaPrenda, TipoDePrenda unTipo) {
-		return unaPrenda.tipoDePrenda().tipo() == unTipo.tipo();
-	}
-	
-	public int getIdGuardarropa() {
-		return idGuardarropa;
+	public boolean hayIndumentariaDelMismoColor(String c,String tp,String cp) {
+		switch(c) {
+			case "parteSuperior":
+				return parteSuperior.stream().filter(i -> i.tipoDePrenda() == tp).anyMatch( p -> p.color() == cp);
+			case "parteInferior":
+				return parteInferior.stream().filter(i -> i.tipoDePrenda() == tp).anyMatch( p -> p.color() == cp);
+			case "calzado":
+				return calzado.stream().filter(i -> i.tipoDePrenda() == tp).anyMatch( p -> p.color() == cp);
+			case "accesorio":
+				return accesorio.stream().filter(i -> i.tipoDePrenda() == tp).anyMatch( p -> p.color() == cp);
+			default:
+				return false;
+		}
 	}
 }

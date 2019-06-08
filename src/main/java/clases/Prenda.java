@@ -2,32 +2,32 @@ package clases;
 
 public class Prenda {
 
-	private Categoria categoria;
-	private TipoDePrenda tipoDePrenda;
-	private TipoDeTela tipoDeTela;
-	private String colorPrincipal;
+	public TipoDePrenda tipoDePrenda;
+	public TipoDeTela tipoDeTela;
+	public Categoria categoria;
+	public String color;
 	
-	public Prenda(Categoria unaCategoria, TipoDePrenda unTipo, TipoDeTela unaTela, String unColor) {
-		categoria = unaCategoria;
+	public Prenda(TipoDePrenda unTipo, TipoDeTela otroTipo, Categoria unaCategoria, String unColor ) {
 		tipoDePrenda = unTipo;
-		tipoDeTela = unaTela;
-		colorPrincipal = unColor;
+		tipoDeTela = otroTipo;
+		categoria = unaCategoria;
+		color = unColor;
 	}
 	
-	public Categoria categoria() {
-		return categoria;
+	public void cambiarDeColor(String otroColor) {
+		color = otroColor;
 	}
 	
-	public TipoDePrenda tipoDePrenda() {
-		return tipoDePrenda;
+	public String categoria() {
+		return categoria.categoria();
 	}
 	
-	public TipoDeTela tipoDeTela() {
-		return tipoDeTela;
+	public String tipoDePrenda() {
+		return tipoDePrenda.tipo();
 	}
 	
-	public String colorPrincipal() {
-		return colorPrincipal;
+	public String color() {
+		return color;
 	}
 
 }
