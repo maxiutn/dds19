@@ -1,0 +1,19 @@
+[
+  {
+    "tipoDePrenda": {
+      "tipo": "tipo prenda",
+      "categoriaAdecuada": "categoria adecuada"
+    },
+    "tipoDeTela": {
+      "prendasAdmitidas": [
+        "tipo 1",
+        "tipo 2"
+      ]
+    },
+    "categoria": {
+      "categoria": "categoria C1"
+    },
+    "color": "Rojo",
+    "descripcion": "remera"
+  }
+]
