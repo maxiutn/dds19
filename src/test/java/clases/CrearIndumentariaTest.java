@@ -19,7 +19,7 @@ public class CrearIndumentariaTest {
 		
 		// Tipo de Telas
 		
-		TipoDeTela algodon = new TipoDeTela(Arrays.asList("remera","pantalon","chomba","shorts"));
+		TipoDeTela algodon = new TipoDeTela(Arrays.asList("remera","pantalon","chomba","shorts","camisaMangaCorta"));
 		TipoDeTela laycra = new TipoDeTela(Arrays.asList(""));
 		TipoDeTela modal = new TipoDeTela(Arrays.asList(""));
 		TipoDeTela cuero = new TipoDeTela(Arrays.asList("campera","botas","pantalon"));
@@ -97,5 +97,13 @@ public class CrearIndumentariaTest {
 			g.guardar(ind1);
 			usuario1.crear_GuardarIndumentariaEn(remera, algodon, parteSuperior, "rojo", "azul", 0);
 			assertTrue(g.hayIndumentariaDelMismoColor("parteSuperior", "remera", "azul"));
-	}
+		}
+		
+		@Test
+		public void crearPrendaEnOtroGuardarropa() {
+			usuario1.crearNuevoGuardarropa();
+			usuario1.crear_GuardarIndumentariaEn(camisaMangaCorta, algodon, parteSuperior, "rojo", "azul", 1);
+			Guardarropa g = usuario1.guardarropas().get(1);
+			assertTrue(g.hayIndumentariaDelMismoColor("parteSuperior","camisaMangaCorta","rojo"));
+		}
 }

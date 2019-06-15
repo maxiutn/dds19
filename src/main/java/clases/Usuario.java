@@ -6,6 +6,7 @@ import java.util.List;
 public class Usuario {
 	
 	List<Guardarropa> guardarropas = new ArrayList<Guardarropa>();
+	List<List<Atuendo>> listaDeSugerencias = new ArrayList<List<Atuendo>>();
 	
 	public Usuario() {
 		this.crearNuevoGuardarropa();								// Automaticamente, cuando se crea un usuario, tiene un guardarropa disponible
@@ -28,6 +29,14 @@ public class Usuario {
 				g.guardar(i);
 			}
 		}
+	}
+	
+	public List<List<Atuendo>> solicitarSugerenciasGuardarropas() {
+		for(int i = 0 ; i < guardarropas.size() ; i++) {
+			Guardarropa g = guardarropas.get(i);
+			listaDeSugerencias.add(g.generarSugerencias());
+		}
+		return listaDeSugerencias;
 	}
 	
 	public void crearNuevoGuardarropa() {
