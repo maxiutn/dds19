@@ -3,8 +3,8 @@ package clases;
 public class Prenda {
 
 	public TipoDePrenda tipoDePrenda;
-	public TipoDeTela tipoDeTela;
 	public Categoria categoria;
+	public TipoDeTela tipoDeTela;
 	public String color;
 	public String descripcion;
 	

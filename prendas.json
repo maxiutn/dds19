@@ -1,19 +1,36 @@
 [
-  {
-    "tipoDePrenda": {
-      "tipo": "tipo prenda",
-      "categoriaAdecuada": "categoria adecuada"
-    },
-    "tipoDeTela": {
-      "prendasAdmitidas": [
-        "tipo 1",
-        "tipo 2"
-      ]
-    },
-    "categoria": {
-      "categoria": "categoria C1"
-    },
-    "color": "Rojo",
-    "descripcion": "remera"
-  }
+	{
+		"tipoDePrenda": {
+			"tipo": "tipo prenda",
+			"categoriaAdecuada": "categoria adecuada"
+		},
+		"categoria": {
+			"categoria": "categoria C1"
+		},
+		"tipoDeTela": {
+			"prendasAdmitidas": [
+				"tipo 1",
+				"tipo 2"
+			]
+		},
+		"color": "Rojo",
+		"descripcion": "remera"
+	},
+	{
+		"tipoDePrenda": {
+			"tipo": "tipo prenda",
+			"categoriaAdecuada": "categoria adecuada"
+		},
+		"categoria": {
+			"categoria": "seda"
+		},
+		"tipoDeTela": {
+			"prendasAdmitidas": [
+				"tipo 1",
+				"tipo 2"
+			]
+		},
+		"color": "Verde",
+		"descripcion": "campera"
+	}
 ]
