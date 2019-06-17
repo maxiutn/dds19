@@ -19,10 +19,10 @@ public class EjemploJson {
 
 		// final String prendas =
 		// "[{\"tipoDePrenda\":{},\"tipoDeTela\":{},\"categoria\":{},\"color\":green,\"descripcion\":remera\"}]";
-		final String prendas = "[{\"tipoDePrenda\":{},\"tipoDeTela\":{},\"categoria\":{\"categoria\":\"categoria C1\"},\"color\":green,\"descripcion\":remera\"}]";
+		final String prendas = "[{\"tipoDePrenda\":{},\"tipoDeTela\":{},\"categoria\":{\"categoria\":\"categoria C1\"},\"color\":green,\"descripcion\":remera}]";
 		
 		
 		List<Prenda> Prendas = gson.fromJson(prendas, listType);
-		System.out.println("TEXT : " + Prendas.get(0).categoria());
+		System.out.println("TEXT : " + Prendas.get(0).categoria() + " TEXT2 : " + Prendas.get(0).descripcion);
 	}
 }
