@@ -8,9 +8,10 @@ public class TipoDePrenda {
 	private List<Tela> listadoTelasAceptables;
 	private String descripcion;
 	
-	public TipoDePrenda(String descripcion, List<Tela> telas) {
+	public TipoDePrenda(String descripcion, List<Tela> telas, Categoria unaCategoria) {
 		this.descripcion = descripcion;
 		this.listadoTelasAceptables = telas;
+		this.categoria = unaCategoria;
 	}
 	
 	public Categoria getCategoria() {

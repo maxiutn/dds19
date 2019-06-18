@@ -23,17 +23,20 @@ public class Atuendo {
 		//infoAtuendo = Arrays.asList(parteSuperior.tipoDePrenda(),parteInferior.tipoDePrenda(),calzado.tipoDePrenda(),accesorio.tipoDePrenda());
 	}
 	
+	
 	public Atuendo(Guardarropa g, Indumentaria ps, Indumentaria pi, Indumentaria c) {
 		this.guardarropa = g;
 		this.parteSuperior = ps;
 		this.parteInferior = pi;
 		this.calzado = c;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Atuendo [guardarropa="+ guardarropa.toString() +",parteSuperior=" + parteSuperior.toString() + ", parteInferior=" + parteInferior.toString() + ", calzado=" + calzado.toString()
-				+ ", accesorio=" + accesorio.toString() + "]";
+		return "Atuendo [guardarropa=" + guardarropa.toString() + ", parteSuperior=" + parteSuperior.toString() + ", parteInferior=" + parteInferior.toString() + ", calzado=" + calzado.toString()
+				+ "]";
 	}
 
 }
+
+//+ ", accesorio=" + accesorio.toString() + 

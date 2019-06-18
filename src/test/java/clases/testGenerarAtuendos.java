@@ -8,130 +8,124 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 public class testGenerarAtuendos {
+	
+	// Generador de Sugerencias
+	
+	Sugerencia sugerenciaSistema = new Sugerencia();
 
 	// Categorias
 	
-			Categoria parteSuperior = new Categoria("parteSuperior");
-			Categoria parteInferior = new Categoria("parteInferior");
-			Categoria calzado = new Categoria("calzado");
-			Categoria accesorio = new Categoria("accesorio");
+	Categoria parteSuperior = new Categoria("parteSuperior");
+	Categoria parteInferior = new Categoria("parteInferior");
+	Categoria calzado = new Categoria("calzado");
+	Categoria accesorio = new Categoria("accesorio");
 			
-			// Tipo de Telas
+	// Tipo de Telas
 			
-			TipoDeTela algodon = new TipoDeTela(Arrays.asList("remera","pantalon","chomba","camisaMangaCorta","falda"));
-			TipoDeTela laycra = new TipoDeTela(Arrays.asList(""));
-			TipoDeTela modal = new TipoDeTela(Arrays.asList(""));
-			TipoDeTela cuero = new TipoDeTela(Arrays.asList("campera","botas","sandalias"));
-			TipoDeTela plastico = new TipoDeTela(Arrays.asList("anteojosDeSol"));
-			TipoDeTela batista = new TipoDeTela(Arrays.asList("pañuelo"));
+	Tela algodon = new Tela("algodon");
+	Tela laycra = new Tela("laycra");
+	Tela modal = new Tela("modal");
+	Tela cuero = new Tela("cuero");
+	Tela lona = new Tela("lona");
+	Tela nylon = new Tela("nylon");
+	Tela crepe = new Tela("crepe");
+	Tela batista = new Tela("batista");
+	//Tela plastico = new Tela("plastico");
 			
-			// Tipo de Prendas
+	// Tipo de Prendas
 			
-				// Parte Superior
-				TipoDePrenda camisaMangaCorta = new TipoDePrenda("camisaMangaCorta","parteSuperior");
-				TipoDePrenda chomba = new TipoDePrenda("chomba","parteSuperior");
-				TipoDePrenda remera = new TipoDePrenda("remera","parteSuperior");
+			// Parte Superior
+				TipoDePrenda camisaMangaCorta = new TipoDePrenda("camisaMangaCorta",Arrays.asList(algodon),parteSuperior);
+				TipoDePrenda chomba = new TipoDePrenda("chomba",Arrays.asList(algodon),parteSuperior);
+				TipoDePrenda remera = new TipoDePrenda("remera",Arrays.asList(algodon),parteSuperior);
 			
-				// Parte Inferior
-				TipoDePrenda pantalon = new TipoDePrenda("pantalon","parteInferior");
-				TipoDePrenda shorts = new TipoDePrenda("shorts","parteInferior");
-				TipoDePrenda falda = new TipoDePrenda("falda","parteInferior");
+			// Parte Inferior
+				TipoDePrenda pantalon = new TipoDePrenda("pantalon",Arrays.asList(algodon),parteInferior);
+				TipoDePrenda shorts = new TipoDePrenda("shorts",Arrays.asList(algodon),parteInferior);
+				TipoDePrenda falda = new TipoDePrenda("falda",Arrays.asList(algodon),parteInferior);
 			
-				// Calzado
-				TipoDePrenda zapatilla = new TipoDePrenda("zapatilla","calzado");
-				TipoDePrenda botas = new TipoDePrenda("botas","calzado");
-				TipoDePrenda sandalias = new TipoDePrenda("sandalias","calzado");
+			// Calzado
+				TipoDePrenda zapatillas = new TipoDePrenda("zapatilla",Arrays.asList(lona,cuero,nylon),calzado);
+				TipoDePrenda botas = new TipoDePrenda("botas",Arrays.asList(cuero),calzado);
+				TipoDePrenda sandalias = new TipoDePrenda("sandalias", Arrays.asList(lona),calzado);
 			
-				// Accesorios
-				TipoDePrenda anteojosDeSol = new TipoDePrenda("anteojosDeSol","accesorio");
-				TipoDePrenda panuelo = new TipoDePrenda("pañuelo","accesorio");
+			// Accesorios
+				//TipoDePrenda anteojosDeSol = new TipoDePrenda("anteojosDeSol","accesorio");
+				TipoDePrenda panuelo = new TipoDePrenda("pañuelo",Arrays.asList(algodon),accesorio);
 			
-			// Usuarios
+		// Usuarios
 			
-			Usuario usuario1 = new Usuario();
-
-		@Test
-		public void generarListaVaciaDeAtuendos1() {
-			Guardarropa g = usuario1.guardarropas().get(0);
-			g.generarSugerencias();
-			assertEquals(0 , g.cantidadDeAtuendos());
-		}
-		
-		@Test
-		public void generarListaVaciaDeAtuendos2() {
-			usuario1.crear_GuardarIndumentariaEn(remera, algodon, parteSuperior, "rojo", "azul", 0);
-			Guardarropa g = usuario1.guardarropas().get(0);
-			g.generarSugerencias();
-			assertEquals(0 , g.cantidadDeAtuendos());
-		}
-		
-		@Test
-		public void generarListaVaciaDeAtuendos3() {
-			usuario1.crear_GuardarIndumentariaEn(remera, algodon, parteSuperior, "rojo", "azul", 0);
-			usuario1.crear_GuardarIndumentariaEn(pantalon, algodon, parteInferior, "negro", "rojo", 0);
-			Guardarropa g = usuario1.guardarropas().get(0);
-			g.generarSugerencias();
-			assertEquals(0 , g.cantidadDeAtuendos());
-		}
-		
-		@Test
-		public void generarListaVaciaDeAtuendos4() {
-			usuario1.crear_GuardarIndumentariaEn(remera, algodon, parteSuperior, "rojo", "azul", 0);
-			usuario1.crear_GuardarIndumentariaEn(pantalon, algodon, parteInferior, "negro", "rojo", 0);
-			usuario1.crear_GuardarIndumentariaEn(sandalias, cuero, calzado, "marron", "blanco", 0);
-			Guardarropa g = usuario1.guardarropas().get(0);
-			g.generarSugerencias();
-			assertEquals(0 , g.cantidadDeAtuendos());
-		}
+		Usuario usuario1 = new Usuario();
+		Usuario usuario2 = new Usuario();
 		
 		@Test
 		public void generarUnAtuendo() {
-			usuario1.crear_GuardarIndumentariaEn(remera, algodon, parteSuperior, "rojo", "azul", 0);
-			usuario1.crear_GuardarIndumentariaEn(pantalon, algodon, parteInferior, "negro", "rojo", 0);
-			usuario1.crear_GuardarIndumentariaEn(sandalias, cuero, calzado, "marron", "blanco", 0);
-			usuario1.crear_GuardarIndumentariaEn(anteojosDeSol, plastico, accesorio, "negro", "rojo", 0);
+			usuario1.agregarNuevoGuardarropa("guardarropa1");
 			Guardarropa g = usuario1.guardarropas().get(0);
-			System.out.println("Test GenerarUnAtuendo:");
-			System.out.println(g.generarSugerencias().stream().map( a -> a.infoAtuendo()).collect(Collectors.toList()));
-			System.out.println("");
+			g.agregarIndumentaria(new Indumentaria(camisaMangaCorta,algodon,"rojo"));
+			g.agregarIndumentaria(new Indumentaria(pantalon,algodon,"negro"));
+			g.agregarIndumentaria(new Indumentaria(zapatillas,nylon,"verde"));
+			//g.agregarIndumentaria(new Indumentaria(panuelo,algodon,"violeta"));
+			sugerenciaSistema.generarSugerencias(usuario1);
 		}
 		
 		@Test
-		public void generarUnAtuendo2() {
-			usuario1.crear_GuardarIndumentariaEn(remera, algodon, parteSuperior, "rojo", "azul", 0);
-			usuario1.crear_GuardarIndumentariaEn(chomba, algodon, parteSuperior, "rojo", "negro", 0);
-			usuario1.crear_GuardarIndumentariaEn(pantalon, algodon, parteInferior, "negro", "rojo", 0);
-			usuario1.crear_GuardarIndumentariaEn(sandalias, cuero, calzado, "marron", "blanco", 0);
-			usuario1.crear_GuardarIndumentariaEn(anteojosDeSol, plastico, accesorio, "negro", "rojo", 0);
+		public void generarVariosAtuendos() {
+			usuario1.agregarNuevoGuardarropa("guardarropa1");
 			Guardarropa g = usuario1.guardarropas().get(0);
-			System.out.println("Test GenerarUnAtuendo2:");
-			System.out.println(g.generarSugerencias().stream().map( a -> a.infoAtuendo()).collect(Collectors.toList()));
-			System.out.println("");
+			
+			g.agregarIndumentaria(new Indumentaria(camisaMangaCorta,algodon,"rojo"));
+			g.agregarIndumentaria(new Indumentaria(pantalon,algodon,"negro"));
+			g.agregarIndumentaria(new Indumentaria(zapatillas,nylon,"verde"));
+			
+			g.agregarIndumentaria(new Indumentaria(remera,algodon,"azul"));
+			g.agregarIndumentaria(new Indumentaria(shorts,algodon,"violeta"));
+			g.agregarIndumentaria(new Indumentaria(zapatillas,nylon,"rojo"));
+			
+			//sugerenciaSistema.generarSugerencias(usuario1);
 		}
 		
 		@Test
 		public void generarAtuendosDeVariosGuardarropas() {
-			usuario1.crearNuevoGuardarropa();
+			usuario1.agregarNuevoGuardarropa("guardarropa1");
+			usuario1.agregarNuevoGuardarropa("guardarropa2");
 			
+			Guardarropa g1 = usuario1.guardarropas().get(0);
+			Guardarropa g2 = usuario1.guardarropas().get(1);
 			
-			usuario1.crear_GuardarIndumentariaEn(remera, algodon, parteSuperior, "rojo", "azul", 0);
-			usuario1.crear_GuardarIndumentariaEn(chomba, algodon, parteSuperior, "rojo", "negro", 0);
-			usuario1.crear_GuardarIndumentariaEn(pantalon, algodon, parteInferior, "negro", "rojo", 0);
-			usuario1.crear_GuardarIndumentariaEn(sandalias, cuero, calzado, "marron", "blanco", 0);
-			usuario1.crear_GuardarIndumentariaEn(anteojosDeSol, plastico, accesorio, "negro", "rojo", 0);
+			g1.agregarIndumentaria(new Indumentaria(camisaMangaCorta,algodon,"rojo"));
+			g1.agregarIndumentaria(new Indumentaria(pantalon,algodon,"negro"));
+			g1.agregarIndumentaria(new Indumentaria(zapatillas,nylon,"verde"));
 			
-			usuario1.crear_GuardarIndumentariaEn(camisaMangaCorta, algodon, parteSuperior, "rojo", "azul", 1);
-			usuario1.crear_GuardarIndumentariaEn(chomba, algodon, parteSuperior, "rojo", "negro", 1);
-			usuario1.crear_GuardarIndumentariaEn(falda, algodon, parteInferior, "negro", "rojo", 1);
-			usuario1.crear_GuardarIndumentariaEn(botas, cuero, calzado, "marron", "blanco", 1);
-			usuario1.crear_GuardarIndumentariaEn(panuelo, batista, accesorio, "negro", "rojo", 1);
+			g2.agregarIndumentaria(new Indumentaria(remera,algodon,"azul"));
+			g2.agregarIndumentaria(new Indumentaria(shorts,algodon,"violeta"));
+			g2.agregarIndumentaria(new Indumentaria(zapatillas,nylon,"rojo"));
 			
+			//sugerenciaSistema.generarSugerencias(usuario1);
+		}
+		
+		@Test
+		public void generarAtuendosDeVariosGuardarropasDeVariosUsuarios() {
+			usuario1.agregarNuevoGuardarropa("guardarropa1");
+			usuario2.agregarNuevoGuardarropa("guardarropa1");
 			
-			System.out.println("Test generarAtuendosDeVariosGuardarropas:");
-			System.out.println(usuario1.solicitarSugerenciasGuardarropas()
-					.stream()
-					.map( ls -> ls.stream().map(a -> a.infoAtuendo()).collect(Collectors.toList()))
-					.collect(Collectors.toList()));
+			Guardarropa g1 = usuario1.guardarropas().get(0);
+			Guardarropa g2 = usuario2.guardarropas().get(0);
+			
+			g1.agregarIndumentaria(new Indumentaria(camisaMangaCorta,algodon,"rojo"));
+			g1.agregarIndumentaria(new Indumentaria(pantalon,algodon,"negro"));
+			g1.agregarIndumentaria(new Indumentaria(zapatillas,nylon,"verde"));
+			
+			g2.agregarIndumentaria(new Indumentaria(remera,algodon,"azul"));
+			g2.agregarIndumentaria(new Indumentaria(shorts,algodon,"violeta"));
+			g2.agregarIndumentaria(new Indumentaria(zapatillas,nylon,"rojo"));
+			
+			/*
+			System.out.println("Atuendos usuario1:");
+			sugerenciaSistema.generarSugerencias(usuario1);
 			System.out.println("");
+			System.out.println("Atuendos usuario2:");
+			sugerenciaSistema.generarSugerencias(usuario2);
+			*/
 		}
 }
