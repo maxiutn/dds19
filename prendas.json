@@ -18,16 +18,16 @@
 	},
 	{
 		"tipoDePrenda": {
-			"tipo": "tipo prenda",
-			"categoriaAdecuada": "categoria adecuada"
+			"tipo": "campera",
+			"categoriaAdecuada": "parte superior"
 		},
 		"categoria": {
 			"categoria": "seda"
 		},
 		"tipoDeTela": {
 			"prendasAdmitidas": [
-				"tipo 1",
-				"tipo 2"
+				"remera seda",
+				"pantalon seda"
 			]
 		},
 		"color": "Verde",
