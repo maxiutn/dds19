@@ -12,7 +12,7 @@ public class Atuendo {
 	private Indumentaria calzado;
 	private Indumentaria accesorio;
 	
-	List<String> infoAtuendo = new ArrayList<String>();
+	//List<String> infoAtuendo = new ArrayList<String>();
 	
 	public Atuendo(Guardarropa g,Indumentaria ps, Indumentaria pi, Indumentaria c, Indumentaria accs) {
 		this.guardarropa = g;
