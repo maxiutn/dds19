@@ -28,28 +28,30 @@ public class DAOJson implements DAO{
 		this.filePath = filePath;
 	}
 	
-	public void add(Prenda prenda) throws IOException {
+	public void add(Indumentaria prenda) throws IOException {
 		this.writeJson(prenda);
 	}
 	
-	public void delete(Prenda prenda) throws IOException {
-		ArrayList<Prenda> prendas= new ArrayList<Prenda>();
+	public void delete(Indumentaria prenda) throws IOException {
+		ArrayList<Indumentaria> prendas= new ArrayList<Indumentaria>();
 		prendas.addAll((getAll()));
-		prendas.removeIf(c->c.getDescripcion().equals(prenda.getDescripcion()));
-		for(Prenda p: prendas) {
-			this.add(p);
-		}
+		if(prendas.contains(prenda)) {
+			prendas.remove(prenda);
+			for(Indumentaria p: prendas) {
+				this.add(p);
+			}
+		}		
 	}
 	
-	public ArrayList<Prenda> getAll() throws JsonSyntaxException, IOException{
+	public ArrayList<Indumentaria> getAll() throws JsonSyntaxException, IOException{
 		FileReader reader = new	FileReader(this.filePath);
 		this.bufferToReader = new BufferedReader(reader);
-		ArrayList<Prenda> prendas = this.gson.fromJson(getJson(), new TypeToken<ArrayList<Prenda>>(){}.getType());
+		ArrayList<Indumentaria> prendas = this.gson.fromJson(getJson(), new TypeToken<ArrayList<Indumentaria>>(){}.getType());
 		return prendas;
 		
 	}
 	
-	public void update(Prenda objeto) {
+	public void update(Indumentaria objeto) {
 		
 	}
 
@@ -63,8 +65,8 @@ public class DAOJson implements DAO{
 		return clienteSerializada.toString();
 	}
 
-	private void writeJson(Prenda prenda) throws IOException{
-		ArrayList<Prenda> prendas= new ArrayList<Prenda>();
+	private void writeJson(Indumentaria prenda) throws IOException{
+		ArrayList<Indumentaria> prendas= new ArrayList<Indumentaria>();
 		
 		if(getAll()!=null) {
 			prendas.addAll((getAll()));

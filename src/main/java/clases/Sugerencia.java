@@ -1,33 +1,34 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Sugerencia {
-	String temporada;
-	List<Prenda> prendas;
-
+	
 	public Sugerencia() {
-		super();
+		
 	}
-
-	public String getTemporada() {
-		return temporada;
-	}
-
-	public void setTemporada(String temporada) {
-		this.temporada = temporada;
-	}
-
-	public List<Prenda> getPrendas() {
-		return prendas;
-	}
-
-	public void setPrendas(List<Prenda> prendas) {
-		this.prendas = prendas;
-	}
-
-	Sugerencia mostrar() {
-		return this;
+	
+	public void generarSugerencias(Usuario usuario){
+		List<Atuendo> listaAtuendos = new ArrayList<Atuendo>();
+		List<Guardarropa> listGuardarropas = usuario.guardarropas();
+		for(Guardarropa g: listGuardarropas){			
+			for(Indumentaria is: g.getIndumentariasSuperior()) {
+				for(Indumentaria ii: g.getIndumentariasInferior()) {
+					for(Indumentaria c: g.getIndumentariasCalzado()) {
+						listaAtuendos.add(new Atuendo(g,is,ii,c));
+						for(Indumentaria a: g.getIndumentariasAccesorio()) {
+							listaAtuendos.add(new Atuendo(g,is,ii,c,a));
+						}
+					}
+				}
+			}
+		}
+		
+		for(Atuendo a: listaAtuendos) {
+			System.out.println(a.toString());
+		}
 	}
 
 }

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public interface DAO {
 
-	public void add(Prenda objeto) throws IOException;
-	public void delete(Prenda objeto) throws IOException;
-	public ArrayList<Prenda> getAll() throws IOException;
-	public void update(Prenda objeto);
+	public void add(Indumentaria objeto) throws IOException;
+	public void delete(Indumentaria objeto) throws IOException;
+	public ArrayList<Indumentaria> getAll() throws IOException;
+	public void update(Indumentaria objeto);
 	
 }

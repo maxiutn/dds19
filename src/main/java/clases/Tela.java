@@ -1,15 +1,14 @@
 package clases;
 
-public class Categoria {
+public class Tela {
 	
 	private String descripcion;
 	
-	public Categoria(String unaCategoria) {
-		this.descripcion = unaCategoria;
+	public Tela(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 	public String getDescripcion() {
 		return this.descripcion;
 	}
-	
 }

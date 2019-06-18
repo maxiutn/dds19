@@ -93,7 +93,7 @@ public class CrearIndumentariaTest {
 		@Test 
 		public void crearPrendaDeColorSecundario() {
 			Guardarropa g = usuario1.guardarropas().get(0);
-			Prenda ind1 = new Prenda(remera, algodon, parteSuperior, "rojo");
+			Indumentaria ind1 = new Indumentaria(remera, algodon, parteSuperior, "rojo");
 			g.guardar(ind1);
 			usuario1.crear_GuardarIndumentariaEn(remera, algodon, parteSuperior, "rojo", "azul", 0);
 			assertTrue(g.hayIndumentariaDelMismoColor("parteSuperior", "remera", "azul"));
