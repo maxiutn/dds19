@@ -22,8 +22,4 @@ public class Usuario {
 	public List<Guardarropa> guardarropas() {
 		return this.guardarropas;
 	}
-	
-	public void agregarNuevoGuardarropa(String unaDescripcion) {
-		guardarropas.add(new Guardarropa(unaDescripcion));
-	}
 }
