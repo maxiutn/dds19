@@ -3,10 +3,12 @@ package clases;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+public abstract class Usuario {
 	
 	private List<Guardarropa> guardarropas;
 	private String nombre;
+	protected String tipoDeUsuario;
+	protected int max_guardarropa;
 	
 	public Usuario() {
 		this.guardarropas = new ArrayList<Guardarropa>();
@@ -20,7 +22,7 @@ public class Usuario {
 	public String getNombre() {
 		return this.nombre;
 	}
-
+	
 	public void setGuardarropa(Guardarropa guardarropa) {
 		this.guardarropas.add(guardarropa);
 	}
@@ -34,6 +36,10 @@ public class Usuario {
 	}
 	
 	public void agregarNuevoGuardarropa(Guardarropa guardarropa) {
-		this.guardarropas.add(guardarropa);
+		if(this.cantidadDeGuardarropas() < this.max_guardarropa || this.tipoDeUsuario == "Premium") {
+			this.guardarropas.add(guardarropa);
+		}else {
+			System.out.println("Solo puede tener "+ this.max_guardarropa +" guardarropas.");
+		}
 	}
 }
