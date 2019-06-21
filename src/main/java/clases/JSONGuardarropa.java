@@ -14,13 +14,13 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-public class DAOJson implements DAO{
+public class JSONGuardarropa {
 	private String filePath;
 	private Gson gson;
 	private BufferedReader bufferToReader;
 	private BufferedWriter bufferToWriter;
 
-	public DAOJson() {
+	public JSONGuardarropa() {
 		this.gson = new GsonBuilder().setPrettyPrinting().create();
 	}
 	
@@ -28,30 +28,30 @@ public class DAOJson implements DAO{
 		this.filePath = filePath;
 	}
 	
-	public void add(Indumentaria prenda) throws IOException {
-		this.writeJson(prenda);
+	public void add(Guardarropa guardarropa) throws IOException {
+		this.writeJson(guardarropa);
 	}
 	
-	public void delete(Indumentaria prenda) throws IOException {
-		ArrayList<Indumentaria> prendas= new ArrayList<Indumentaria>();
-		prendas.addAll((getAll()));
-		if(prendas.contains(prenda)) {
-			prendas.remove(prenda);
-			for(Indumentaria p: prendas) {
-				this.add(p);
+	public void delete(Guardarropa guardarropa) throws IOException {
+		ArrayList<Guardarropa> guardarropas= new ArrayList<Guardarropa>();
+		guardarropas.addAll((getAll()));
+		if(guardarropas.contains(guardarropa)) {
+			guardarropas.remove(guardarropa);
+			for(Guardarropa g: guardarropas) {
+				this.add(g);
 			}
 		}		
 	}
 	
-	public ArrayList<Indumentaria> getAll() throws JsonSyntaxException, IOException{
-		FileReader reader = new	FileReader(this.filePath);
-		this.bufferToReader = new BufferedReader(reader);
-		ArrayList<Indumentaria> prendas = this.gson.fromJson(getJson(), new TypeToken<ArrayList<Indumentaria>>(){}.getType());
-		return prendas;
+	public ArrayList<Guardarropa> getAll() throws JsonSyntaxException, IOException{
+		FileReader reader = new	FileReader(filePath);
+		bufferToReader = new BufferedReader(reader);
+		ArrayList<Guardarropa> guardarropas = gson.fromJson(getJson(), new TypeToken<ArrayList<Guardarropa>>(){}.getType());
+		return guardarropas;
 		
 	}
 	
-	public void update(Indumentaria objeto) {
+	public void update(Guardarropa guardarropa) {
 		
 	}
 
@@ -65,31 +65,31 @@ public class DAOJson implements DAO{
 		return clienteSerializada.toString();
 	}
 
-	private void writeJson(Indumentaria prenda) throws IOException{
-		ArrayList<Indumentaria> prendas= new ArrayList<Indumentaria>();
+	private void writeJson(Guardarropa guardarropa) throws IOException{
+		ArrayList<Guardarropa> guardarropas= new ArrayList<Guardarropa>();
 		
 		if(getAll()!=null) {
-			prendas.addAll((getAll()));
+			guardarropas.addAll((getAll()));
 		}
 		
-		prendas.add(prenda);
+		guardarropas.add(guardarropa);
 		
-		String prendasString= this.gson.toJson(prendas);
+		String guardarropasString= this.gson.toJson(guardarropas);
 	
 		PrintWriter pw = new PrintWriter(this.filePath);
 		pw.close();
 		
 		this.bufferToWriter = new BufferedWriter(new FileWriter(this.filePath, true));
-		this.bufferToWriter.write(prendasString);
+		this.bufferToWriter.write(guardarropasString);
 		this.bufferToWriter.close();
 	}
-
+	
 	/*
 	public Gson getMyGson() {
 		return gson;
 	}
-	
-
+	*/
+/*
 	public BufferedReader getBufferToReader() {
 		return bufferToReader;
 	}
@@ -103,6 +103,6 @@ public class DAOJson implements DAO{
 	public String getFilePath() {
 		return filePath;
 	}
-	*/
 	
+	*/
 }
