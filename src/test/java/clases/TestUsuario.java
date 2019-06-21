@@ -21,6 +21,11 @@ public class TestUsuario {
 	private JSONUsuario jsonUsuario;
 	private Usuario usuario;
 	private Guardarropa guardarropa1;
+	private Indumentaria indumentaria;
+	private TipoDePrenda campera;
+	private Categoria categoria;
+	private List<Tela> telas, telas2;
+	private Tela algodon,cuero,frizado;
 	
 	@Before
 	public void init() throws IOException{
@@ -28,6 +33,21 @@ public class TestUsuario {
 		jsonUsuario.setFilePath("usuarios.json");	
 		this.usuario = new Usuario("Pier");
 		this.guardarropa1 = new Guardarropa("guardarropaUno");
+		
+		categoria = new Categoria("Parte Superior");
+		
+		algodon = new Tela("Algodon");
+		cuero = new Tela("Cuero");
+		frizado = new Tela("Frizado");
+		
+		telas = new ArrayList<Tela>();		
+		telas.add(algodon);
+		
+		telas2 = new ArrayList<Tela>();		
+		telas2.add(cuero);
+		telas2.add(frizado);		
+		
+		this.campera = new TipoDePrenda("Campera",telas2,categoria);
 	}
 	
 	@After
@@ -38,6 +58,8 @@ public class TestUsuario {
 	
 	@Test
 	public void persistirUsuario() throws IOException {
+		Indumentaria prendaCampera = new Indumentaria(campera,cuero,"negro");
+		guardarropa1.agregarIndumentaria(prendaCampera);
 		usuario.setGuardarropa(guardarropa1);
 		jsonUsuario.add(this.usuario);
 		Assert.assertTrue(jsonUsuario.getAll().size()==1);		

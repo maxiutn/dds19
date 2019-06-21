@@ -1,0 +1,32 @@
+[
+  {
+    "guardarropas": [
+      {
+        "listaIndumentarias": [
+          {
+            "tipoDePrenda": {
+              "categoria": {
+                "descripcion": "Parte Superior"
+              },
+              "listadoTelasAceptables": [
+                {
+                  "descripcion": "Cuero"
+                },
+                {
+                  "descripcion": "Frizado"
+                }
+              ],
+              "descripcion": "Campera"
+            },
+            "tela": {
+              "descripcion": "Cuero"
+            },
+            "colorPrimario": "negro"
+          }
+        ],
+        "descripcion": "guardarropaUno"
+      }
+    ],
+    "nombre": "Pier"
+  }
+]
