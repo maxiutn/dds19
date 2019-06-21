@@ -20,6 +20,9 @@ public class testGenerarAtuendos {
 	Categoria calzado = new Categoria("calzado");
 	Categoria accesorio = new Categoria("accesorio");
 			
+	//Guardarropas
+	Guardarropa guardarropa1 = new Guardarropa("guardarropa1");
+	Guardarropa guardarropa2 = new Guardarropa("guardarropa2");
 	// Tipo de Telas
 			
 	Tela algodon = new Tela("algodon");
@@ -60,7 +63,7 @@ public class testGenerarAtuendos {
 		
 		@Test
 		public void generarUnAtuendo() {
-			usuario1.agregarNuevoGuardarropa("guardarropa1");
+			usuario1.agregarNuevoGuardarropa(guardarropa1);
 			Guardarropa g = usuario1.guardarropas().get(0);
 			g.agregarIndumentaria(new Indumentaria(camisaMangaCorta,algodon,"rojo"));
 			g.agregarIndumentaria(new Indumentaria(pantalon,algodon,"negro"));
@@ -71,7 +74,7 @@ public class testGenerarAtuendos {
 		
 		@Test
 		public void generarVariosAtuendos() {
-			usuario1.agregarNuevoGuardarropa("guardarropa1");
+			usuario1.agregarNuevoGuardarropa(guardarropa1);
 			Guardarropa g = usuario1.guardarropas().get(0);
 			
 			g.agregarIndumentaria(new Indumentaria(camisaMangaCorta,algodon,"rojo"));
@@ -87,8 +90,8 @@ public class testGenerarAtuendos {
 		
 		@Test
 		public void generarAtuendosDeVariosGuardarropas() {
-			usuario1.agregarNuevoGuardarropa("guardarropa1");
-			usuario1.agregarNuevoGuardarropa("guardarropa2");
+			usuario1.agregarNuevoGuardarropa(guardarropa1);
+			usuario1.agregarNuevoGuardarropa(guardarropa2);
 			
 			Guardarropa g1 = usuario1.guardarropas().get(0);
 			Guardarropa g2 = usuario1.guardarropas().get(1);
@@ -106,8 +109,8 @@ public class testGenerarAtuendos {
 		
 		@Test
 		public void generarAtuendosDeVariosGuardarropasDeVariosUsuarios() {
-			usuario1.agregarNuevoGuardarropa("guardarropa1");
-			usuario2.agregarNuevoGuardarropa("guardarropa1");
+			usuario1.agregarNuevoGuardarropa(guardarropa1);
+			usuario2.agregarNuevoGuardarropa(guardarropa1);
 			
 			Guardarropa g1 = usuario1.guardarropas().get(0);
 			Guardarropa g2 = usuario2.guardarropas().get(0);

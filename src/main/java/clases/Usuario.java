@@ -32,4 +32,8 @@ public class Usuario {
 	public List<Guardarropa> guardarropas() {
 		return this.guardarropas;
 	}
+	
+	public void agregarNuevoGuardarropa(Guardarropa guardarropa) {
+		this.guardarropas.add(guardarropa);
+	}
 }

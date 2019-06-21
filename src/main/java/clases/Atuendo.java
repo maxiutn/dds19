@@ -33,8 +33,15 @@ public class Atuendo {
 	
 	@Override
 	public String toString() {
-		return "Atuendo [guardarropa=" + guardarropa.toString() + ", parteSuperior=" + parteSuperior.toString() + ", parteInferior=" + parteInferior.toString() + ", calzado=" + calzado.toString()
-				+ "]";
+		String valor  =  "Atuendo [guardarropa=" + guardarropa.toString() + ", parteSuperior=" + parteSuperior.toString() + ", parteInferior=" + parteInferior.toString() + ", calzado=" + calzado.toString();
+				
+		if(accesorio != null) {
+			valor = valor + ",accesorio=" + accesorio.toString() +"]";
+		}else {
+			valor = valor + ",accesorio= null]";
+		}
+		
+		return valor;
 	}
 
 }
