@@ -44,7 +44,7 @@ public class TestIndumentaria {
 		telas2.add(cuero);
 		telas2.add(frizado);		
 		
-		this.campera = new TipoDePrenda("Campera",telas2,categoria);
+		this.campera = new TipoDePrenda("Campera",telas2,categoria,15);
 		//this.guardarropa1 = new Guardarropa("guardarropaUno");
 	}
 	
@@ -53,13 +53,13 @@ public class TestIndumentaria {
 		jsonIndumentaria = new JSONIndumentaria();
 		jsonIndumentaria.setFilePath("indumentarias.json");	
 	}
-	/*
+	
 	@Test
 	public void persistirIndumentaria() throws IOException {
 		Indumentaria prendaCampera = new Indumentaria(campera,cuero,"negro");
 		jsonIndumentaria.add(prendaCampera);
 		Assert.assertTrue(jsonIndumentaria.getAll().size()==1);		
-	}*/
+	}
 	
 	@Test
 	public void agregar() throws IOException {
