@@ -9,6 +9,7 @@ public abstract class Usuario {
 	private String nombre;
 	protected String tipoDeUsuario;
 	private SugerenciaStrategy sugerencia;
+	private List<Evento> eventos;
 	
 	public Usuario() {
 		this.guardarropas = new ArrayList<Guardarropa>();
@@ -46,6 +47,10 @@ public abstract class Usuario {
 
 	public void setSugerencia(SugerenciaStrategy sugerencia) {
 		this.sugerencia = sugerencia;
+	}
+	
+	public void agregarEvento(Evento e) {
+		this.eventos.add(e);
 	}
 	
 }

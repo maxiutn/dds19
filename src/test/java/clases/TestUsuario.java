@@ -22,7 +22,7 @@ public class TestUsuario {
 	private Usuario usuario;
 	private Guardarropa guardarropa1;
 	private Indumentaria indumentaria;
-	private TipoDePrenda campera;
+	private TipoDePrenda campera,remera;
 	private Categoria categoria;
 	private List<Tela> telas, telas2;
 	private Tela algodon,cuero,frizado;
@@ -31,7 +31,7 @@ public class TestUsuario {
 	public void init() throws IOException{
 		jsonUsuario = new JSONUsuario();
 		jsonUsuario.setFilePath("usuarios.json");	
-		this.usuario = new Usuario("Pier");
+		this.usuario = new Gratuito("Pier");
 		this.guardarropa1 = new Guardarropa("guardarropaUno");
 		
 		categoria = new Categoria("Parte Superior");
@@ -47,7 +47,8 @@ public class TestUsuario {
 		telas2.add(cuero);
 		telas2.add(frizado);		
 		
-		this.campera = new TipoDePrenda("Campera",telas2,categoria);
+		this.remera = new TipoDePrenda("Remera",telas,categoria,15);
+		this.campera = new TipoDePrenda("Campera",telas2,categoria,20);
 	}
 	
 	@After
