@@ -14,4 +14,7 @@ public class Evento {
 		this.ubicacion = ubicacion;
 	}
 	
+	public Ubicacion getUbicacion() {
+		return this.ubicacion;
+	}
 }

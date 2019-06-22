@@ -8,6 +8,8 @@ public abstract class SugerenciaStrategy {
 	
 	protected int temperaturaAdecuada;
 	
+	public abstract void generarSugerencias(Usuario usuario);
+	
 	public int getTemperaturaAdecuada() {
 		return this.temperaturaAdecuada;
 	}

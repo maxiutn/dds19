@@ -8,7 +8,7 @@ public class SugerenciaVerano extends SugerenciaStrategy{
 
 	
 	public SugerenciaVerano() {
-		this.temperaturaAdecuada = 25;		
+		this.temperaturaAdecuada = 50;		
 	}
 	
 	public void generarSugerencias(Usuario usuario){

@@ -43,6 +43,11 @@ public abstract class Usuario {
 	
 	public void agregarNuevoGuardarropa(Guardarropa guardarropa) {
 		this.guardarropas.add(guardarropa);
+		if(this.tipoDeUsuario == "Premium") {
+			guardarropa.setMaximoPrendas(-1);
+		}else {
+			guardarropa.setMaximoPrendas(10);
+		}
 	}
 
 	public void setSugerencia(SugerenciaStrategy sugerencia) {
