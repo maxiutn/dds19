@@ -8,7 +8,7 @@ public abstract class Usuario {
 	private List<Guardarropa> guardarropas;
 	private String nombre;
 	protected String tipoDeUsuario;
-	protected int max_guardarropa;
+	private SugerenciaStrategy sugerencia;
 	
 	public Usuario() {
 		this.guardarropas = new ArrayList<Guardarropa>();
@@ -25,6 +25,11 @@ public abstract class Usuario {
 	
 	public void setGuardarropa(Guardarropa guardarropa) {
 		this.guardarropas.add(guardarropa);
+		if(this.tipoDeUsuario == "Premium") {
+			guardarropa.setMaximoPrendas(-1);
+		}else {
+			guardarropa.setMaximoPrendas(30);
+		}
 	}
 	
 	public int cantidadDeGuardarropas() {
@@ -36,10 +41,10 @@ public abstract class Usuario {
 	}
 	
 	public void agregarNuevoGuardarropa(Guardarropa guardarropa) {
-		if(this.cantidadDeGuardarropas() < this.max_guardarropa || this.tipoDeUsuario == "Premium") {
-			this.guardarropas.add(guardarropa);
-		}else {
-			System.out.println("Solo puede tener "+ this.max_guardarropa +" guardarropas.");
-		}
+		this.guardarropas.add(guardarropa);
+	}
+	
+	public void setSugerencia(SugerenciaStrategy sugerencia) {
+		this.sugerencia = sugerencia;
 	}
 }

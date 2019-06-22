@@ -5,6 +5,5 @@ public class Premium extends Usuario{
 	public Premium(String nombre) {
 		super(nombre);
 		this.tipoDeUsuario = "Premium";
-		this.max_guardarropa = -1;
 	}
 }

@@ -8,6 +8,7 @@ public class Guardarropa {
 
 	private List<Indumentaria> listaIndumentarias;
 	private String descripcion;
+	private int max_prendas;
 		
 	public Guardarropa(String descripcion) {
 		this.descripcion = descripcion;
@@ -19,7 +20,11 @@ public class Guardarropa {
 	}
 	
 	public void agregarIndumentaria(Indumentaria indumentaria) {
-		this.listaIndumentarias.add(indumentaria);
+		if(this.cantidadIndumentarias() <= this.max_prendas || this.max_prendas < 0) {
+			this.listaIndumentarias.add(indumentaria);
+		}else {
+			System.out.println("Solo puede tener "+ this.max_prendas +" prendas.");
+		}
 	}
 	
 	public List<Indumentaria> getIndumentarias() {
@@ -49,6 +54,10 @@ public class Guardarropa {
 		List<Indumentaria> indumentariaAccesorio = this.listaIndumentarias.stream().filter(i -> i.getTipoDePrenda().getCategoria().getDescripcion().equalsIgnoreCase("accesorio")).collect(Collectors.toList());
 		return indumentariaAccesorio;
 	}	
+	
+	public void setMaximoPrendas(int maximo) {
+		this.max_prendas = maximo;
+	}
 	
 	@Override
 	public String toString() {
