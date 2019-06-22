@@ -28,7 +28,7 @@ public abstract class Usuario {
 		if(this.tipoDeUsuario == "Premium") {
 			guardarropa.setMaximoPrendas(-1);
 		}else {
-			guardarropa.setMaximoPrendas(30);
+			guardarropa.setMaximoPrendas(10);
 		}
 	}
 	
@@ -43,8 +43,9 @@ public abstract class Usuario {
 	public void agregarNuevoGuardarropa(Guardarropa guardarropa) {
 		this.guardarropas.add(guardarropa);
 	}
-	
+
 	public void setSugerencia(SugerenciaStrategy sugerencia) {
 		this.sugerencia = sugerencia;
 	}
+	
 }

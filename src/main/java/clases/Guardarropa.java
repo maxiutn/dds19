@@ -20,7 +20,7 @@ public class Guardarropa {
 	}
 	
 	public void agregarIndumentaria(Indumentaria indumentaria) {
-		if(this.cantidadIndumentarias() <= this.max_prendas || this.max_prendas < 0) {
+		if(this.cantidadIndumentarias() < this.max_prendas || this.max_prendas < 0) {
 			this.listaIndumentarias.add(indumentaria);
 		}else {
 			System.out.println("Solo puede tener "+ this.max_prendas +" prendas.");
