@@ -7,6 +7,7 @@ public class Indumentaria {
 	private String colorPrimario;
 	private String colorSecundario;
 	private String observacion;	
+	private boolean permiteSuperponer;
 	
 	public Indumentaria(TipoDePrenda unTipo, Tela tela, String color) {
 		if(unTipo.getTelasAceptables().contains(tela)) {

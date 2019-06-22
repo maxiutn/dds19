@@ -2,14 +2,9 @@ package clases;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Sugerencia {
-	
-	public Sugerencia() {
-		
-	}
-	
+public class SugerenciaInvierno extends SugerenciaStrategy {
+
 	public void generarSugerencias(Usuario usuario){
 		List<Atuendo> listaAtuendos = new ArrayList<Atuendo>();
 		List<Guardarropa> listGuardarropas = usuario.guardarropas();
@@ -17,9 +12,9 @@ public class Sugerencia {
 			for(Indumentaria is: g.getIndumentariasSuperior()) {
 				for(Indumentaria ii: g.getIndumentariasInferior()) {
 					for(Indumentaria c: g.getIndumentariasCalzado()) {
-						listaAtuendos.add(new Atuendo(g,is,ii,c));
+						//listaAtuendos.add(new Atuendo(g,is,ii,c));
 						for(Indumentaria a: g.getIndumentariasAccesorio()) {
-							listaAtuendos.add(new Atuendo(g,is,ii,c,a));
+							//listaAtuendos.add(new Atuendo(g,is,ii,c,a));
 						}
 					}
 				}
@@ -30,5 +25,4 @@ public class Sugerencia {
 			System.out.println(a.toString());
 		}
 	}
-
 }
