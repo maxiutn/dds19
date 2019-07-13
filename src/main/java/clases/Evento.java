@@ -17,4 +17,12 @@ public class Evento {
 	public Ubicacion getUbicacion() {
 		return this.ubicacion;
 	}
+	
+	public String getEvento() {
+		return this.evento;
+	}
+	
+	public LocalDate getFechaDeEncuentro() {
+		return this.fechaEncuentro;
+	}
 }

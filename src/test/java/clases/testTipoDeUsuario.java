@@ -7,10 +7,6 @@ import java.util.Arrays;
 import org.junit.Test;
 
 public class testTipoDeUsuario {
-	
-	// Generador de Sugerencias
-	
-	Sugerencia sugerenciaSistema = new Sugerencia();
 
 	// Categorias
 		
@@ -38,30 +34,30 @@ public class testTipoDeUsuario {
 		// Tipo de Prendas
 				
 			//Parte Superior
-				TipoDePrenda camisaMangaCorta = new TipoDePrenda("camisaMangaCorta",Arrays.asList(algodon),parteSuperior);
-				TipoDePrenda chomba = new TipoDePrenda("chomba",Arrays.asList(algodon),parteSuperior);
-				TipoDePrenda remera = new TipoDePrenda("remera",Arrays.asList(algodon),parteSuperior);
-				TipoDePrenda camisaMangaLarga = new TipoDePrenda("camisaMangaLarga",Arrays.asList(algodon),parteSuperior);
-				TipoDePrenda buzo = new TipoDePrenda("buzo",Arrays.asList(algodon),parteSuperior);
-				TipoDePrenda sueter = new TipoDePrenda("sueter",Arrays.asList(lana),parteSuperior);
-				TipoDePrenda mangaLarga = new TipoDePrenda("mangaLarga",Arrays.asList(algodon),parteSuperior);
-				TipoDePrenda campera = new TipoDePrenda("campera",Arrays.asList(polar),parteSuperior);				
+				TipoDePrenda camisaMangaCorta = new TipoDePrenda("camisaMangaCorta",Arrays.asList(algodon),parteSuperior,5);
+				TipoDePrenda chomba = new TipoDePrenda("chomba",Arrays.asList(algodon),parteSuperior,5);
+				TipoDePrenda remera = new TipoDePrenda("remera",Arrays.asList(algodon),parteSuperior,5);
+				TipoDePrenda camisaMangaLarga = new TipoDePrenda("camisaMangaLarga",Arrays.asList(algodon),parteSuperior,10);
+				TipoDePrenda termica = new TipoDePrenda("termica",Arrays.asList(algodon),parteSuperior,10);
+				TipoDePrenda buzo = new TipoDePrenda("buzo",Arrays.asList(algodon),parteSuperior,15);
+				TipoDePrenda sueter = new TipoDePrenda("sueter",Arrays.asList(lana),parteSuperior,15);
+				TipoDePrenda campera = new TipoDePrenda("campera",Arrays.asList(polar),parteSuperior,20);				
 				
 				
 			// Parte Inferior
-				TipoDePrenda pantalon = new TipoDePrenda("pantalon",Arrays.asList(algodon),parteInferior);
-				TipoDePrenda shorts = new TipoDePrenda("shorts",Arrays.asList(algodon),parteInferior);
-				TipoDePrenda falda = new TipoDePrenda("falda",Arrays.asList(algodon),parteInferior);
+				TipoDePrenda pantalon = new TipoDePrenda("pantalon",Arrays.asList(algodon),parteInferior,1);
+				TipoDePrenda shorts = new TipoDePrenda("shorts",Arrays.asList(algodon),parteInferior,1);
+				TipoDePrenda falda = new TipoDePrenda("falda",Arrays.asList(algodon),parteInferior,1);
 				
 			// Calzado
-				TipoDePrenda zapatillas = new TipoDePrenda("zapatilla",Arrays.asList(lona,cuero,nylon),calzado);
-				TipoDePrenda botas = new TipoDePrenda("botas",Arrays.asList(cuero),calzado);
-				TipoDePrenda zapatos = new TipoDePrenda("zapatos",Arrays.asList(cuero),calzado);
-				TipoDePrenda sandalias = new TipoDePrenda("sandalias", Arrays.asList(lona),calzado);
+				TipoDePrenda zapatillas = new TipoDePrenda("zapatilla",Arrays.asList(lona,cuero,nylon),calzado,1);
+				TipoDePrenda botas = new TipoDePrenda("botas",Arrays.asList(cuero),calzado,1);
+				TipoDePrenda zapatos = new TipoDePrenda("zapatos",Arrays.asList(cuero),calzado,1);
+				TipoDePrenda sandalias = new TipoDePrenda("sandalias", Arrays.asList(lona),calzado,1);
 				
 			// Accesorios
-				TipoDePrenda anteojosDeSol = new TipoDePrenda("anteojosDeSol",Arrays.asList(plastico),accesorio);
-				TipoDePrenda panuelo = new TipoDePrenda("pañuelo",Arrays.asList(algodon),accesorio);
+				TipoDePrenda anteojosDeSol = new TipoDePrenda("anteojosDeSol",Arrays.asList(plastico),accesorio,0);
+				TipoDePrenda bufanda = new TipoDePrenda("bufanda",Arrays.asList(algodon),accesorio,0);
 				
 				
 		// Usuarios
@@ -82,7 +78,7 @@ public class testTipoDeUsuario {
 		g.agregarIndumentaria(new Indumentaria(botas,cuero,"negro"));
 		g.agregarIndumentaria(new Indumentaria(zapatos,cuero,"marronOscuro"));
 		g.agregarIndumentaria(new Indumentaria(sandalias,lona,"marronClaro"));
-		g.agregarIndumentaria(new Indumentaria(panuelo,algodon,"violeta"));
+		g.agregarIndumentaria(new Indumentaria(bufanda,algodon,"violeta"));
 		
 		assertEquals(10 , g.cantidadIndumentarias());
 	}
@@ -103,7 +99,7 @@ public class testTipoDeUsuario {
 		g.agregarIndumentaria(new Indumentaria(botas,cuero,"negro"));
 		g.agregarIndumentaria(new Indumentaria(zapatos,cuero,"marronOscuro"));
 		g.agregarIndumentaria(new Indumentaria(sandalias,lona,"marronClaro"));
-		g.agregarIndumentaria(new Indumentaria(panuelo,algodon,"violeta"));
+		g.agregarIndumentaria(new Indumentaria(bufanda,algodon,"violeta"));
 		g.agregarIndumentaria(new Indumentaria(anteojosDeSol,plastico,"negro"));
 	}
 	
@@ -121,7 +117,7 @@ public class testTipoDeUsuario {
 		g.agregarIndumentaria(new Indumentaria(botas,cuero,"negro"));
 		g.agregarIndumentaria(new Indumentaria(zapatos,cuero,"marronOscuro"));
 		g.agregarIndumentaria(new Indumentaria(sandalias,lona,"marronClaro"));
-		g.agregarIndumentaria(new Indumentaria(panuelo,algodon,"violeta"));
+		g.agregarIndumentaria(new Indumentaria(bufanda,algodon,"violeta"));
 		g.agregarIndumentaria(new Indumentaria(anteojosDeSol,plastico,"negro"));
 		
 		assertEquals(11 , g.cantidadIndumentarias());

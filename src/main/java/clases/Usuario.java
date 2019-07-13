@@ -18,6 +18,7 @@ public abstract class Usuario {
 	public Usuario(String nombre) {
 		this.nombre = nombre;
 		this.guardarropas = new ArrayList<Guardarropa>();
+		this.eventos = new ArrayList<Evento>();
 	}
 	
 	public String getNombre() {
@@ -56,6 +57,10 @@ public abstract class Usuario {
 	
 	public void agregarEvento(Evento e) {
 		this.eventos.add(e);
+	}
+	
+	public List<Evento> getListaEventos() {
+		return this.eventos;
 	}
 	
 }

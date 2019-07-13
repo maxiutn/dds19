@@ -40,6 +40,10 @@ public class Guardarropa {
 		return indumentariaSuperior;
 	}
 	
+	public List<Indumentaria> getIndumentariaSuperiorPorNivelDeCalor(int nc) {
+		return this.getIndumentariasSuperior().stream().filter(i -> i.getNivelDeCalor() == nc).collect(Collectors.toList());
+	}
+	
 	public List<Indumentaria> getIndumentariasInferior(){
 		List<Indumentaria> indumentariaInferior = this.listaIndumentarias.stream().filter(i -> i.getTipoDePrenda().getCategoria().getDescripcion().equalsIgnoreCase("parteInferior")).collect(Collectors.toList());
 		return indumentariaInferior;
