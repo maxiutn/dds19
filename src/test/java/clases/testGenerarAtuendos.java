@@ -3,7 +3,6 @@ package clases;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -56,8 +55,8 @@ public class testGenerarAtuendos {
 			
 		// Usuarios
 			
-		Gratuito usuario1 = new Gratuito("Usuario1");
-		Gratuito usuario2 = new Gratuito("Usuario2");
+		Usuario usuario1 = new Usuario("Usuario1","Gratuito");
+		Usuario usuario2 = new Usuario("Usuario2","Gratuito");
 		
 		@Test
 		public void generarUnAtuendo() {

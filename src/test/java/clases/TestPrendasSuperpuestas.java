@@ -1,5 +1,7 @@
 package clases;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -11,9 +13,6 @@ public class TestPrendasSuperpuestas {
 
 	// Categorias		
 	Categoria parteSuperior = new Categoria("parteSuperior");
-	Categoria parteInferior = new Categoria("parteInferior");
-	Categoria calzado = new Categoria("calzado");
-	Categoria accesorio = new Categoria("accesorio");
 					
 	//Guardarropas
 	Guardarropa guardarropa1 = new Guardarropa("guardarropa1");
@@ -22,9 +21,6 @@ public class TestPrendasSuperpuestas {
 	Tela algodon = new Tela("algodon");
 	Tela lana = new Tela("lana");
 	Tela polar = new Tela("polar");
-	Tela cuero = new Tela("cuero");
-	Tela lona = new Tela("lona");
-	Tela nylon = new Tela("nylon");
 					
 	// Tipo de Prendas
 					
@@ -37,58 +33,59 @@ public class TestPrendasSuperpuestas {
 		TipoDePrenda sueter = new TipoDePrenda("sueter",Arrays.asList(lana),parteSuperior,15);
 		TipoDePrenda campera = new TipoDePrenda("campera",Arrays.asList(polar),parteSuperior,20);				
 					
-		// Parte Inferior
-		TipoDePrenda pantalon = new TipoDePrenda("pantalon",Arrays.asList(algodon),parteInferior,1);
-		TipoDePrenda shorts = new TipoDePrenda("shorts",Arrays.asList(algodon),parteInferior,1);
-		TipoDePrenda falda = new TipoDePrenda("falda",Arrays.asList(algodon),parteInferior,1);
-					
-		// Calzado
-		TipoDePrenda zapatillas = new TipoDePrenda("zapatilla",Arrays.asList(lona,cuero,nylon),calzado,1);
-		TipoDePrenda botas = new TipoDePrenda("botas",Arrays.asList(cuero),calzado,1);
-		TipoDePrenda zapatos = new TipoDePrenda("zapatos",Arrays.asList(cuero),calzado,1);
-					
-		// Accesorios
-		TipoDePrenda bufanda = new TipoDePrenda("bufanda",Arrays.asList(algodon),accesorio,1);
-					
 					
 	// Usuarios
-	Gratuito usuario2Gratuito = new Gratuito("usuario2");
+	Usuario usuario = new Usuario("usuario","Premium");
 
 	@Test
 	public void generarPrendasParteSuperiorAnidadas() {
 		
-		usuario2Gratuito.agregarNuevoGuardarropa(guardarropa1);
+		String[] arrayEsperado = {"chomba", "camisaMangaLarga", "sueter", "campera"};
+		
+		usuario.agregarNuevoGuardarropa(guardarropa1);
 		guardarropa1.agregarIndumentaria(new Indumentaria(chomba,algodon,"rojo"));
 		guardarropa1.agregarIndumentaria(new Indumentaria(camisaMangaLarga,algodon,"verde"));
 		guardarropa1.agregarIndumentaria(new Indumentaria(sueter,lana,"negro"));
 		guardarropa1.agregarIndumentaria(new Indumentaria(campera,polar,"negro"));
 		
-		System.out.println("Test Generar Prendas Anidadas ParteSuperior: ");
 		si.generarPrendasAnidadas(guardarropa1);
-		System.out.println(si.getDescripcionListaPrendasSuperiorAnidadas());
-		System.out.println("");
+		
+		Object[] arrayResultado1 =  si.getDescripcionListaPrendasSuperiorAnidadas().get(0).toArray();
+		
+		assertArrayEquals(arrayEsperado, arrayResultado1);
 	}
 	
 	@Test
 	public void generarPrendasParteSuperiorAnidadas2() {
 		
-		usuario2Gratuito.agregarNuevoGuardarropa(guardarropa1);
+		String[] arrayEsperado1 = {"chomba", "camisaMangaLarga", "sueter", "campera"};
+		String[] arrayEsperado2 = {"remera", "camisaMangaLarga", "sueter", "campera"};
+		
+		usuario.agregarNuevoGuardarropa(guardarropa1);
 		guardarropa1.agregarIndumentaria(new Indumentaria(chomba,algodon,"rojo"));
 		guardarropa1.agregarIndumentaria(new Indumentaria(remera,algodon,"blanco"));
 		guardarropa1.agregarIndumentaria(new Indumentaria(camisaMangaLarga,algodon,"verde"));
 		guardarropa1.agregarIndumentaria(new Indumentaria(sueter,lana,"negro"));
 		guardarropa1.agregarIndumentaria(new Indumentaria(campera,polar,"negro"));
 		
-		System.out.println("Test Generar Prendas Anidadas ParteSuperior(2): ");
 		si.generarPrendasAnidadas(guardarropa1);
-		System.out.println(si.getDescripcionListaPrendasSuperiorAnidadas());
-		System.out.println("");
+		
+		Object[] arrayResultado1 =  si.getDescripcionListaPrendasSuperiorAnidadas().get(0).toArray();
+		Object[] arrayResultado2 =  si.getDescripcionListaPrendasSuperiorAnidadas().get(1).toArray();
+		
+		assertArrayEquals(arrayEsperado1, arrayResultado1);
+		assertArrayEquals(arrayEsperado2, arrayResultado2);
 	}
 	
 	@Test
 	public void generarPrendasParteSuperiorAnidadas3() {
 		
-		usuario2Gratuito.agregarNuevoGuardarropa(guardarropa1);
+		String[] arrayEsperado1 = {"chomba", "camisaMangaLarga", "sueter", "campera"};
+		String[] arrayEsperado2 = {"chomba", "camisaMangaLarga", "buzo", "campera"};
+		String[] arrayEsperado3 = {"remera", "camisaMangaLarga", "sueter", "campera"};
+		String[] arrayEsperado4 = {"remera", "camisaMangaLarga", "buzo", "campera"};
+		
+		usuario.agregarNuevoGuardarropa(guardarropa1);
 		guardarropa1.agregarIndumentaria(new Indumentaria(chomba,algodon,"rojo"));
 		guardarropa1.agregarIndumentaria(new Indumentaria(remera,algodon,"blanco"));
 		guardarropa1.agregarIndumentaria(new Indumentaria(camisaMangaLarga,algodon,"verde"));
@@ -96,10 +93,16 @@ public class TestPrendasSuperpuestas {
 		guardarropa1.agregarIndumentaria(new Indumentaria(buzo,algodon,"azul"));
 		guardarropa1.agregarIndumentaria(new Indumentaria(campera,polar,"negro"));
 		
-		System.out.println("Test Generar Prendas Anidadas ParteSuperior(3): ");
 		si.generarPrendasAnidadas(guardarropa1);
-		System.out.println(si.getDescripcionListaPrendasSuperiorAnidadas());
-		System.out.println("");
+		
+		Object[] arrayResultado1 =  si.getDescripcionListaPrendasSuperiorAnidadas().get(0).toArray();
+		Object[] arrayResultado2 =  si.getDescripcionListaPrendasSuperiorAnidadas().get(1).toArray();
+		Object[] arrayResultado3 =  si.getDescripcionListaPrendasSuperiorAnidadas().get(2).toArray();
+		Object[] arrayResultado4 =  si.getDescripcionListaPrendasSuperiorAnidadas().get(3).toArray();
+		
+		assertArrayEquals(arrayEsperado1, arrayResultado1);
+		assertArrayEquals(arrayEsperado2, arrayResultado2);
+		assertArrayEquals(arrayEsperado3, arrayResultado3);
+		assertArrayEquals(arrayEsperado4, arrayResultado4);
 	}
-
 }

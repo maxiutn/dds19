@@ -60,7 +60,7 @@ public class TestEventos {
 		TipoDePrenda bufanda = new TipoDePrenda("bufanda",Arrays.asList(lana),accesorio,0);
 								
 		// Usuarios
-		Gratuito usuario2Gratuito = new Gratuito("usuario2");
+		Usuario usuario2Gratuito = new Usuario("usuario","Gratuito");
 
 		@Test
 		public void obtenerTemperaturaDelEvento() {

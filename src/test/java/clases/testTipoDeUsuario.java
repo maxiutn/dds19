@@ -61,13 +61,14 @@ public class testTipoDeUsuario {
 				
 				
 		// Usuarios
-			Premium usuario1Premium = new Premium("usuario1");
-			Gratuito usuario2Gratuito = new Gratuito("usuario2");
+			Usuario usuario1 = new Usuario("usuario1","Premium");
+			Usuario usuario2 = new Usuario("usuario2","Gratuito");
 	
 	@Test
-	public void almacenarCantidadMenor_IndumentariaMaxima() {
-		usuario2Gratuito.setGuardarropa(guardarropa1);
-		Guardarropa g = usuario2Gratuito.guardarropas().get(0);
+	public void cantidadDeIndumentariaParaUsuarioGratuito() {
+		
+		usuario2.setGuardarropa(guardarropa1);
+		Guardarropa g = usuario2.guardarropas().get(0);
 		
 		g.agregarIndumentaria(new Indumentaria(camisaMangaCorta,algodon,"rojo"));
 		g.agregarIndumentaria(new Indumentaria(chomba,algodon,"azul"));
@@ -80,15 +81,14 @@ public class testTipoDeUsuario {
 		g.agregarIndumentaria(new Indumentaria(sandalias,lona,"marronClaro"));
 		g.agregarIndumentaria(new Indumentaria(bufanda,algodon,"violeta"));
 		
-		assertEquals(10 , g.cantidadIndumentarias());
+		assertEquals(10,g.cantidadIndumentarias());
 	}
 	
 	@Test
-	public void almacenarCantidadExcesiva_IndumentariaMaxima() {
-		usuario2Gratuito.setGuardarropa(guardarropa1);
-		Guardarropa g = usuario2Gratuito.guardarropas().get(0);
+	public void cantidadExcesivaDeIndumentariaParaUsuarioGratuito() {
 		
-		System.out.println("Test2: Cantidad excesiva de prendas en usuario gratuito"); // Se espera mensaje de error
+		usuario2.setGuardarropa(guardarropa1);
+		Guardarropa g = usuario2.guardarropas().get(0);
 		
 		g.agregarIndumentaria(new Indumentaria(camisaMangaCorta,algodon,"rojo"));
 		g.agregarIndumentaria(new Indumentaria(chomba,algodon,"azul"));
@@ -101,12 +101,15 @@ public class testTipoDeUsuario {
 		g.agregarIndumentaria(new Indumentaria(sandalias,lona,"marronClaro"));
 		g.agregarIndumentaria(new Indumentaria(bufanda,algodon,"violeta"));
 		g.agregarIndumentaria(new Indumentaria(anteojosDeSol,plastico,"negro"));
+		
+		assertEquals(10,g.cantidadIndumentarias());
 	}
 	
 	@Test
 	public void almacenarCualquierCantidadDeIndumentaria_UsuarioPremium() {
-		usuario1Premium.setGuardarropa(guardarropa1);
-		Guardarropa g = usuario1Premium.guardarropas().get(0);
+		
+		usuario1.setGuardarropa(guardarropa1);
+		Guardarropa g = usuario1.guardarropas().get(0);
 		
 		g.agregarIndumentaria(new Indumentaria(camisaMangaCorta,algodon,"rojo"));
 		g.agregarIndumentaria(new Indumentaria(chomba,algodon,"azul"));
@@ -122,5 +125,5 @@ public class testTipoDeUsuario {
 		
 		assertEquals(11 , g.cantidadIndumentarias());
 	}
-
+	
 }

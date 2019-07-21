@@ -3,20 +3,17 @@ package clases;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Usuario {
+public class Usuario {
 	
 	private List<Guardarropa> guardarropas;
 	private String nombre;
 	protected String tipoDeUsuario;
-	private SugerenciaStrategy sugerencia;
+	//private SugerenciaStrategy sugerencia;
 	private List<Evento> eventos;
 	
-	public Usuario() {
-		this.guardarropas = new ArrayList<Guardarropa>();
-	}
-	
-	public Usuario(String nombre) {
+	public Usuario(String nombre, String categoria) {
 		this.nombre = nombre;
+		this.tipoDeUsuario = categoria;
 		this.guardarropas = new ArrayList<Guardarropa>();
 		this.eventos = new ArrayList<Evento>();
 	}
@@ -50,10 +47,12 @@ public abstract class Usuario {
 			guardarropa.setMaximoPrendas(10);
 		}
 	}
-
+	
+	/*
 	public void setSugerencia(SugerenciaStrategy sugerencia) {
 		this.sugerencia = sugerencia;
 	}
+	*/
 	
 	public void agregarEvento(Evento e) {
 		this.eventos.add(e);

@@ -31,7 +31,7 @@ public class TestUsuario {
 	public void init() throws IOException{
 		jsonUsuario = new JSONUsuario();
 		jsonUsuario.setFilePath("usuarios.json");	
-		this.usuario = new Gratuito("Pier");
+		this.usuario = new Usuario("Pier","Gratuito");
 		this.guardarropa1 = new Guardarropa("guardarropaUno");
 		
 		categoria = new Categoria("Parte Superior");

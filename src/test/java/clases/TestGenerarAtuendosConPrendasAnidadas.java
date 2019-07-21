@@ -52,7 +52,7 @@ public class TestGenerarAtuendosConPrendasAnidadas {
 							
 							
 		// Usuarios
-		Gratuito usuario2Gratuito = new Gratuito("usuario2");
+		Usuario usuario2Gratuito = new Usuario("usuario2","Gratuito");
 
 		@Test
 		public void generarAtuendosConPrendasAnidadas() {
