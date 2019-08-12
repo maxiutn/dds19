@@ -1,9 +1,7 @@
 package clases;
 
-public abstract class ServicioClima {
-	
-	public ServicioClima() {
-		
-	}
-
+public interface ServicioClima {
+	public double getTemperatura(Ubicacion ubicacion);
+	public boolean estaDisponible();
+	public String servicio();
 }

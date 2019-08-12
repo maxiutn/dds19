@@ -5,32 +5,33 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SugerenciaPrimavera{
+public class SugerenciaPrimavera implements I_SugerenciaStrategy{
 
-	List<List<Indumentaria>> listaPrendasSuperiorAnidadas = new ArrayList<List<Indumentaria>>();
+	List<List<Indumentaria>> listaPrendasSuperiorAnidadas;
 	
 	public void generarSugerencias(Usuario usuario) {
-		List<Atuendo> listaAtuendos = new ArrayList<Atuendo>();
-		List<Guardarropa> listGuardarropas = usuario.guardarropas();
 		
-		for(Guardarropa g: listGuardarropas){
-			this.generarPrendasAnidadas(g);
-			for(int i = 0 ; i < this.listaPrendasSuperiorAnidadas.size() ; i++) {
-				List<Indumentaria> prendaAnidada = listaPrendasSuperiorAnidadas.get(i);
-				for(Indumentaria ii: g.getIndumentariasInferior()) {
-					for(Indumentaria c: g.getIndumentariasCalzado()) {
-						listaAtuendos.add(new Atuendo(g,prendaAnidada,ii,c));
-						for(Indumentaria a: g.getIndumentariasAccesorio()) {
-							listaAtuendos.add(new Atuendo(g,prendaAnidada,ii,c,a));
+			this.listaPrendasSuperiorAnidadas = new ArrayList<List<Indumentaria>>();
+			List<Atuendo> listaAtuendos = new ArrayList<Atuendo>();
+			List<Guardarropa> listGuardarropas = usuario.guardarropas();
+		
+			for(Guardarropa g: listGuardarropas){
+				this.generarPrendasAnidadas(g);
+				for(List<Indumentaria> prendasSuperpuestas : this.getListaPrendasSuperiorAnidadas()) {
+					for(Indumentaria ii: g.getIndumentariasInferior()) {
+						for(Indumentaria c: g.getIndumentariasCalzado()) {
+							listaAtuendos.add(new Atuendo(g,prendasSuperpuestas,ii,c));
+							for(Indumentaria a: g.getIndumentariasAccesorio()) {
+								listaAtuendos.add(new Atuendo(g,prendasSuperpuestas,ii,c,a));
+							}
 						}
 					}
 				}
 			}
-		}
 		
-		for(Atuendo a: listaAtuendos) {
-			System.out.println(a.toString());
-		}
+			for(Atuendo a: listaAtuendos) {
+				System.out.println(a.toString());
+			}
 	}
 	
 	public void generarPrendasAnidadas(Guardarropa g) {
@@ -47,5 +48,9 @@ public class SugerenciaPrimavera{
 	
 	public List<List<String>> getDescripcionListaPrendasSuperiorAnidadas() {
 		return this.listaPrendasSuperiorAnidadas.stream().map( lpa -> lpa.stream().map( pa -> pa.getTipoDePrenda().getDescripcion() ).collect(Collectors.toList())).collect(Collectors.toList());
+	}
+	
+	public List<List <Indumentaria>> getListaPrendasSuperiorAnidadas() {
+		return this.listaPrendasSuperiorAnidadas;
 	}
 }

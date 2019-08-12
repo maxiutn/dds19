@@ -1,5 +1,9 @@
 package clases;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -10,15 +14,24 @@ public class TestEventos {
 	// Ubicacion
 	Ubicacion buenosAires = new Ubicacion(-34.6131500,-58.3772300);
 	
-	//Evento
-	Evento trabajo = new Evento("trabajo",LocalDate.parse("2019-07-13"),buenosAires);
-	
 	// API Clima
-	ServicioA apiClima = new ServicioA();
+	ServicioA servicioOpenWeather = new ServicioA();
+	ServicioB servicioDarkSkyWeather = new ServicioB();
+	ServicioClima servicio = servicioOpenWeather;
+	
+	// Adaptador
+	Adapter adaptador = new Adapter();
+	
+	
+	//Evento
+	//Evento trabajo = new Evento("trabajo",LocalDate.parse("2019-07-22"),buenosAires,servicioOpenWeather);
+	//Evento bautismo = new Evento("bautismo",LocalDate.parse("2019-07-22"),buenosAires,servicioOpenWeather);
+	//Evento partido = new Evento("ver un partido",LocalDate.parse("2019-07-22"),buenosAires,servicioOpenWeather);
+	//Evento fiestaAmigos = new Evento("fiesta con amigos",LocalDate.parse("2019-08-12"),buenosAires,adaptador);
 	
 	// Generador de Sugerencias
-	SugerenciaInvierno si = new SugerenciaInvierno();
-	SugerenciaVerano sv = new SugerenciaVerano();
+	Sugerencia sugerenciaSistema = new Sugerencia();
+	
 	
 	// Categorias		
 	Categoria parteSuperior = new Categoria("parteSuperior");
@@ -60,70 +73,100 @@ public class TestEventos {
 		TipoDePrenda bufanda = new TipoDePrenda("bufanda",Arrays.asList(lana),accesorio,0);
 								
 		// Usuarios
-		Usuario usuario2Gratuito = new Usuario("usuario","Gratuito");
-
+		Usuario usuario = new Usuario("Usuario","Gratuito");
+		
 		@Test
-		public void obtenerTemperaturaDelEvento() {
+		public void establecerConexionesAPIs() {
+		try {
+			servicioOpenWeather.establecerConexion();
+			servicioDarkSkyWeather.establecerConexion();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		assertTrue(servicioOpenWeather.estaDisponible());
+		assertTrue(servicioDarkSkyWeather.estaDisponible());
+		/*	
+			adaptador.agregarServicio(servicioOpenWeather);
+			adaptador.agregarServicio(servicioDarkSkyWeather);
+			adaptador.setServicio();
+			System.out.println(adaptador.servicio());
+		*/
+		}
+		
+		@Test
+		public void fallarConexionesAPIs() {
+			servicioOpenWeather.verificarConexion(404);
+			servicioDarkSkyWeather.verificarConexion(404);
+			assertFalse(servicioOpenWeather.estaDisponible());
+			assertFalse(servicioDarkSkyWeather.estaDisponible());
+		}
+		
+		
+		/*
+		@Test
+		public void generarAtuendosConPrendasAnidadasParaUnEvento() {
 							
-			usuario2Gratuito.agregarEvento(trabajo);
-			Evento e = usuario2Gratuito.getListaEventos().get(0);
+			usuario.agregarNuevoGuardarropa(guardarropa1);
+			usuario.agregarEvento(trabajo);
+
+			guardarropa1.agregarIndumentaria(new Indumentaria(remera,algodon,"blanco"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(camisaMangaLarga,algodon,"verde"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(sueter,lana,"negro"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(campera,polar,"negro"));
+				
+			guardarropa1.agregarIndumentaria(new Indumentaria(pantalon,algodon,"azulOscuro"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(zapatos,cuero,"negro"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(bufanda,lana,"rojo"));
+				
+			sugerenciaSistema.realizarSugerencias(usuario);
 			
-			System.out.print("Temperatura del Evento: ");
-			System.out.println(apiClima.getTemperatura(e));
+			System.out.println("");
 			System.out.println("");
 		}
-						
-			@Test
-			public void generarAtuendosConPrendasAnidadasSegunEvento() {
+			
+		@Test
+		public void generarAtuendosConPrendasAnidadasParaDosEventos() {
 							
-				usuario2Gratuito.agregarNuevoGuardarropa(guardarropa1);
-				usuario2Gratuito.agregarEvento(trabajo);
-
-				guardarropa1.agregarIndumentaria(new Indumentaria(remera,algodon,"blanco"));
-				guardarropa1.agregarIndumentaria(new Indumentaria(camisaMangaLarga,algodon,"verde"));
-				guardarropa1.agregarIndumentaria(new Indumentaria(sueter,lana,"negro"));
-				guardarropa1.agregarIndumentaria(new Indumentaria(campera,polar,"negro"));
+			usuario.agregarNuevoGuardarropa(guardarropa1);
+			usuario.agregarEvento(trabajo);
+			usuario.agregarEvento(bautismo);
+			
+			guardarropa1.agregarIndumentaria(new Indumentaria(remera,algodon,"blanco"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(camisaMangaLarga,algodon,"verde"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(sueter,lana,"negro"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(campera,polar,"negro"));
 				
-				guardarropa1.agregarIndumentaria(new Indumentaria(pantalon,algodon,"azulOscuro"));
-				guardarropa1.agregarIndumentaria(new Indumentaria(zapatos,cuero,"negro"));
-				guardarropa1.agregarIndumentaria(new Indumentaria(bufanda,lana,"rojo"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(pantalon,algodon,"azulOscuro"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(zapatos,cuero,"negro"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(bufanda,lana,"rojo"));
 				
-				Evento e = usuario2Gratuito.getListaEventos().get(0);
-				
-				if(apiClima.getTemperatura(e) < 15) {
-					System.out.println("Test Generar Atuendos con Prendas Anidadas Segun Evento:");
-					si.generarSugerencias(usuario2Gratuito);
-					System.out.println("");
-				} else {
-					System.out.println("Test Generar Atuendos con Prendas Anidadas Segun Evento:");
-					sv.generarSugerencias(usuario2Gratuito);
-					System.out.println("");
-				}
-			}
-					
-			@Test
-			public void generarAtuendosConPrendasAnidadasSegunEvento2() {
+			sugerenciaSistema.realizarSugerencias(usuario);
+			
+			System.out.println("");
+			System.out.println("");
+		}
+		
+		@Test
+		public void generarAtuendosConPrendasAnidadasParaVariosEventos() {
 							
-				usuario2Gratuito.agregarNuevoGuardarropa(guardarropa1);
-				usuario2Gratuito.agregarEvento(trabajo);
+			usuario.agregarNuevoGuardarropa(guardarropa1);
+			usuario.agregarEvento(trabajo);
+			usuario.agregarEvento(bautismo);
+			usuario.agregarEvento(partido);
+			
+			guardarropa1.agregarIndumentaria(new Indumentaria(remera,algodon,"blanco"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(camisaMangaLarga,algodon,"verde"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(sueter,lana,"negro"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(campera,polar,"negro"));
 				
-				guardarropa1.agregarIndumentaria(new Indumentaria(remera,algodon,"blanco"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(pantalon,algodon,"azulOscuro"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(zapatos,cuero,"negro"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(bufanda,lana,"rojo"));
 				
-				guardarropa1.agregarIndumentaria(new Indumentaria(pantalon,algodon,"azulOscuro"));
-				guardarropa1.agregarIndumentaria(new Indumentaria(zapatos,cuero,"negro"));
-				guardarropa1.agregarIndumentaria(new Indumentaria(bufanda,lana,"rojo"));
-				
-				Evento e = usuario2Gratuito.getListaEventos().get(0);
-							
-				if(apiClima.getTemperatura(e) + 10 < 15) {
-					System.out.println("Test Generar Atuendos con Prendas Anidadas Segun Evento2:");
-					si.generarSugerencias(usuario2Gratuito);
-					System.out.println("");
-				} else {
-					System.out.println("Test Generar Atuendos con Prendas Anidadas Segun Evento2:");
-					sv.generarSugerencias(usuario2Gratuito);
-					System.out.println("");
-				}
-			}
-
+			sugerenciaSistema.realizarSugerencias(usuario);
+			
+			System.out.println("");
+			System.out.println("");
+		}
+		*/
 }

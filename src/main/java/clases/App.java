@@ -16,7 +16,7 @@ public class App {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Premium usuario = new Premium("Pier");
+		Usuario usuario = new Usuario("Pier","Premium");
 		//Guardarropa g1 = new Guardarropa("guardarropa uno");
 		/*Categoria categoria = new Categoria("Parte Superior");
 		
@@ -106,12 +106,12 @@ public class App {
 		
 		
 		Ubicacion ubicacion = new Ubicacion(-34.6088891,-58.406088200000006);
-		
+		/*
 		Evento evento = new Evento("facultad",LocalDate.now(),ubicacion);
 		
 		double temperatura = servicio.getTemperatura(evento);
 		
-		SugerenciaStrategy sugerenciaSistema;
+		Sugerencia sugerenciaSistema;
 		
 		if(temperatura > 10) {
 			sugerenciaSistema = new SugerenciaVerano();
@@ -120,7 +120,7 @@ public class App {
 		}
 		
 		sugerenciaSistema.generarSugerencias(usuario);
-
+		*/
 	}
 
 }

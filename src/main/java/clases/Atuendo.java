@@ -1,7 +1,5 @@
 package clases;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Atuendo {
@@ -12,7 +10,6 @@ public class Atuendo {
 	private Indumentaria calzado;
 	private Indumentaria accesorio;
 	
-	//List<String> infoAtuendo = new ArrayList<String>();
 	/*
 	public Atuendo(Guardarropa g,Indumentaria ps, Indumentaria pi, Indumentaria c, Indumentaria accs) {
 		this.guardarropa = g;
@@ -67,5 +64,3 @@ public class Atuendo {
 	}
 
 }
-
-//+ ", accesorio=" + accesorio.toString() + 
