@@ -22,15 +22,17 @@ public class SugerenciaInvierno implements I_SugerenciaStrategy {
 						for(Indumentaria c: g.getIndumentariasCalzado()) {
 							listaAtuendos.add(new Atuendo(g,prendasSuperpuestas,ii,c));
 							for(Indumentaria a: g.getIndumentariasAccesorio()) {
-								listaAtuendos.add(new Atuendo(g,prendasSuperpuestas,ii,c,a));
+								g.agregarAtuendo(new Atuendo(g,prendasSuperpuestas,ii,c,a));
 							}
 						}
 					}
 				}
-			}		
+			}
+			/*
 			for(Atuendo a: listaAtuendos) {
 				System.out.println(a.toString());
 			}
+			*/
 	}
 
 	public void generarPrendasAnidadas(Guardarropa g) {

@@ -9,10 +9,12 @@ public class Guardarropa {
 	private List<Indumentaria> listaIndumentarias;
 	private String descripcion;
 	private int max_prendas;
+	private List<Atuendo> sugerencias;
 		
 	public Guardarropa(String descripcion) {
 		this.descripcion = descripcion;
 		this.listaIndumentarias = new ArrayList<Indumentaria>();
+		this.sugerencias = new ArrayList<Atuendo>();
 	}
 	
 	public String getDescripcion() {
@@ -62,6 +64,16 @@ public class Guardarropa {
 	public void setMaximoPrendas(int maximo) {
 		this.max_prendas = maximo;
 	}
+	
+	public void agregarAtuendo(Atuendo unAtuendo) {
+		this.sugerencias.add(unAtuendo);
+	}
+	
+	public List<Atuendo> getAtuendos() {
+		return this.sugerencias;
+	}
+	
+	
 	
 	@Override
 	public String toString() {

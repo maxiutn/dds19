@@ -8,15 +8,14 @@ public class Evento {
 	private LocalDate fechaEncuentro;
 	private Ubicacion ubicacion;
 	private double temperatura;
-	private IAdapter adapterClima;
+	private AdapterI adapterClima;
 	
-	public Evento(String evento, LocalDate fecha, Ubicacion ubicacion,IAdapter unAdapter) {
+	public Evento(String evento, LocalDate fecha, Ubicacion ubicacion,AdapterI unAdapter) {
 		this.descripcion = evento;
 		this.fechaEncuentro = fecha;
 		this.ubicacion = ubicacion;
 		this.adapterClima = unAdapter;
-		this.temperatura = this.adapterClima.recibirTemperatura(this.ubicacion);
-		
+		//this.temperatura = this.adapterClima.recibirTemperatura(this.ubicacion);
 	}
 	
 	public Ubicacion getUbicacion() {
@@ -33,5 +32,9 @@ public class Evento {
 	
 	public double getTemperatura() {
 		return this.temperatura;
+	}
+	
+	public void setTemperatura(Ubicacion unaUbicacion) {
+		this.temperatura = this.adapterClima.recibirTemperatura(unaUbicacion);
 	}
 }

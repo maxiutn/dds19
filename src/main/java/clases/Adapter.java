@@ -3,7 +3,7 @@ package clases;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter implements IAdapter {
+public class Adapter implements AdapterI {
 	
 	private List<ServicioClima> servicios = new ArrayList<ServicioClima>();
 	private ServicioClima servicio;

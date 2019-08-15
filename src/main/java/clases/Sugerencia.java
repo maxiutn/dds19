@@ -23,8 +23,8 @@ public class Sugerencia {
 		List<Evento> listaDeEventos = usuario.getListaEventos();
 		
 		for(Evento e: listaDeEventos) {
-			System.out.print("Evento:");
-			System.out.println(e.getDescripcion());
+			//System.out.print("Evento:");
+			//System.out.println(e.getDescripcion());
 			//sugerencia.generarSugerencias(usuario,e);
 			double t = e.getTemperatura();
 			if(t > -5 && t < 10 ) {
@@ -42,5 +42,4 @@ public class Sugerencia {
 			}
 		}
 	}
-
 }

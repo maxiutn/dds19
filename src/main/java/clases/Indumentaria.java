@@ -13,6 +13,7 @@ public class Indumentaria {
 			this.tipoDePrenda = unTipo;
 			this.tela = tela;
 			this.colorPrimario = color;
+			this.observacion = this.tipoDePrenda.getDescripcion();
 		}else {
 			System.out.println("La tela ingresada no pertenece a un tipo de tela aceptable.");
 		}

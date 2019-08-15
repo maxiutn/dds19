@@ -47,7 +47,7 @@ public class ServicioB implements ServicioClima {
             }
             conn.disconnect();
 
-            return (temperatura - 32) * 5 / 9;
+            return ((temperatura - 32) * 5 / 9) + 3; //sumo tres porque hay un margen de error de casi tres grados (La tempde la api esta en farenheit)
 
         } catch (Exception ex) {
             //System.out.println("Exception in NetClientGet:- " + e);

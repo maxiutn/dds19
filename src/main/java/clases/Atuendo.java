@@ -1,6 +1,7 @@
 package clases;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Atuendo {
 	
@@ -43,6 +44,21 @@ public class Atuendo {
 		this.calzado = c;
 	}
 	
+	public List<String> getParteSuperior() {
+		return this.parteSuperior.stream().map(ps -> ps.getObservacion()).collect(Collectors.toList());
+	}
+	
+	public String getParteInferior() {
+		return this.parteInferior.getObservacion();
+	}
+	
+	public String getCalzado() {
+		return this.calzado.getObservacion();
+	}
+	
+	public String getAccesorio() {
+		return this.accesorio.getObservacion();
+	}
 	
 	@Override
 	public String toString() {
@@ -59,8 +75,6 @@ public class Atuendo {
 		}else {
 			valor = valor + ",accesorio= null]";
 		}
-		
 		return valor;
 	}
-
 }

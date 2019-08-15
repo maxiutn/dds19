@@ -8,7 +8,6 @@ public class TipoDePrenda {
 	private Categoria categoria;
 	private List<Tela> listadoTelasAceptables;
 	private String descripcion;
-	private boolean superponer;
 	private List<TipoDePrenda> prendasSuperpuestas;
 	private int calor;
 	
@@ -16,7 +15,6 @@ public class TipoDePrenda {
 		this.descripcion = descripcion;
 		this.listadoTelasAceptables = telas;
 		this.categoria = unaCategoria;
-		this.superponer = false;
 		this.calor = calor;
 		this.prendasSuperpuestas = new ArrayList<TipoDePrenda>();
 	}
@@ -31,14 +29,6 @@ public class TipoDePrenda {
 
 	public String getDescripcion() {
 		return this.descripcion;
-	}
-	
-	public boolean puedeSuperponerse() {
-		return this.superponer;
-	}
-	
-	public void superponer(boolean valor) {
-		this.superponer = valor;
 	}
 	
 	public void setPrendasSuperpuestas(List<TipoDePrenda> prendasSuperpuestas) {

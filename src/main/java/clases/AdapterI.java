@@ -1,5 +1,5 @@
 package clases;
 
-public interface IAdapter {
+public interface AdapterI {
 	public double recibirTemperatura(Ubicacion ubicacion);
 }

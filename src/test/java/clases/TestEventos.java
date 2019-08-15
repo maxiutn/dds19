@@ -1,11 +1,12 @@
 package clases;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -13,6 +14,7 @@ public class TestEventos {
 	
 	// Ubicacion
 	Ubicacion buenosAires = new Ubicacion(-34.6131500,-58.3772300);
+	Ubicacion mendoza = new Ubicacion(-32.8908400,-68.8271700);
 	
 	// API Clima
 	ServicioA servicioOpenWeather = new ServicioA();
@@ -24,10 +26,9 @@ public class TestEventos {
 	
 	
 	//Evento
-	//Evento trabajo = new Evento("trabajo",LocalDate.parse("2019-07-22"),buenosAires,servicioOpenWeather);
-	//Evento bautismo = new Evento("bautismo",LocalDate.parse("2019-07-22"),buenosAires,servicioOpenWeather);
-	//Evento partido = new Evento("ver un partido",LocalDate.parse("2019-07-22"),buenosAires,servicioOpenWeather);
-	//Evento fiestaAmigos = new Evento("fiesta con amigos",LocalDate.parse("2019-08-12"),buenosAires,adaptador);
+	Evento trabajo = new Evento("trabajo",LocalDate.parse("2019-08-15"),buenosAires,adaptador);
+	Evento bautismo = new Evento("bautismo",LocalDate.parse("2019-08-15"),buenosAires,adaptador);
+	Evento casamiento = new Evento("casamiento",LocalDate.parse("2019-08-15"),mendoza,adaptador);
 	
 	// Generador de Sugerencias
 	Sugerencia sugerenciaSistema = new Sugerencia();
@@ -42,7 +43,8 @@ public class TestEventos {
 	//Guardarropas	
 	Guardarropa guardarropa1 = new Guardarropa("guardarropa1");
 					
-	// Tipo de Telas				
+	// Tipo de Telas
+	Tela tweed = new Tela("tweed");
 	Tela algodon = new Tela("algodon");
 	Tela lana = new Tela("lana");
 	Tela polar = new Tela("polar");
@@ -58,6 +60,7 @@ public class TestEventos {
 		TipoDePrenda termica = new TipoDePrenda("termica",Arrays.asList(algodon),parteSuperior,10);
 		TipoDePrenda sueter = new TipoDePrenda("sueter",Arrays.asList(lana),parteSuperior,15);
 		TipoDePrenda campera = new TipoDePrenda("campera",Arrays.asList(polar),parteSuperior,20);
+		TipoDePrenda saco = new TipoDePrenda("saco",Arrays.asList(tweed),parteSuperior,15);
 								
 								
 		// Parte Inferior
@@ -76,36 +79,53 @@ public class TestEventos {
 		Usuario usuario = new Usuario("Usuario","Gratuito");
 		
 		@Test
-		public void establecerConexionesAPIs() {
+		public void obtenerTemperaturaDeUnaCiudad() {
 		try {
 			servicioOpenWeather.establecerConexion();
 			servicioDarkSkyWeather.establecerConexion();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		assertTrue(servicioOpenWeather.estaDisponible());
-		assertTrue(servicioDarkSkyWeather.estaDisponible());
-		/*	
+		
 			adaptador.agregarServicio(servicioOpenWeather);
 			adaptador.agregarServicio(servicioDarkSkyWeather);
 			adaptador.setServicio();
-			System.out.println(adaptador.servicio());
-		*/
+			assertEquals(9,adaptador.recibirTemperatura(buenosAires),1.5);
 		}
 		
 		@Test
-		public void fallarConexionesAPIs() {
-			servicioOpenWeather.verificarConexion(404);
-			servicioDarkSkyWeather.verificarConexion(404);
-			assertFalse(servicioOpenWeather.estaDisponible());
-			assertFalse(servicioDarkSkyWeather.estaDisponible());
+		public void obtenerTemperaturasDeDosCiudades() {
+			try {
+				servicioOpenWeather.establecerConexion();
+				servicioDarkSkyWeather.establecerConexion();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+				adaptador.agregarServicio(servicioOpenWeather);
+				adaptador.agregarServicio(servicioDarkSkyWeather);
+				adaptador.setServicio();
+				//casamiento.setTemperatura(mendoza);
+				trabajo.setTemperatura(buenosAires);
+				//assertEquals(3,casamiento.getTemperatura(),1.5); revisar temperatura de mendoza
+				assertEquals(9,trabajo.getTemperatura(),1.5);
 		}
 		
-		
-		/*
 		@Test
 		public void generarAtuendosConPrendasAnidadasParaUnEvento() {
-							
+			
+			try {
+				servicioOpenWeather.establecerConexion();
+				servicioDarkSkyWeather.establecerConexion();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			adaptador.agregarServicio(servicioOpenWeather);
+			adaptador.agregarServicio(servicioDarkSkyWeather);
+			adaptador.setServicio();
+			trabajo.setTemperatura(buenosAires);
+			
 			usuario.agregarNuevoGuardarropa(guardarropa1);
 			usuario.agregarEvento(trabajo);
 
@@ -120,53 +140,84 @@ public class TestEventos {
 				
 			sugerenciaSistema.realizarSugerencias(usuario);
 			
-			System.out.println("");
-			System.out.println("");
-		}
+			Atuendo atuendo = guardarropa1.getAtuendos().get(0);
+			List<String> parteSuperior = atuendo.getParteSuperior();
+			String parteInferior = atuendo.getParteInferior();
+			String calzado = atuendo.getCalzado();
+			String accesorio = atuendo.getAccesorio();
 			
-		@Test
-		public void generarAtuendosConPrendasAnidadasParaDosEventos() {
-							
-			usuario.agregarNuevoGuardarropa(guardarropa1);
-			usuario.agregarEvento(trabajo);
-			usuario.agregarEvento(bautismo);
+			String[] arrayEsperadoPS = {"remera" , "camisaMangaLarga" , "sueter" ,"campera"};
+			String parteInferiorEsperado = "pantalon";
+			String calzadoEsperado = "zapatos";
+			String accesorioEsperado = "bufanda";
 			
-			guardarropa1.agregarIndumentaria(new Indumentaria(remera,algodon,"blanco"));
-			guardarropa1.agregarIndumentaria(new Indumentaria(camisaMangaLarga,algodon,"verde"));
-			guardarropa1.agregarIndumentaria(new Indumentaria(sueter,lana,"negro"));
-			guardarropa1.agregarIndumentaria(new Indumentaria(campera,polar,"negro"));
-				
-			guardarropa1.agregarIndumentaria(new Indumentaria(pantalon,algodon,"azulOscuro"));
-			guardarropa1.agregarIndumentaria(new Indumentaria(zapatos,cuero,"negro"));
-			guardarropa1.agregarIndumentaria(new Indumentaria(bufanda,lana,"rojo"));
-				
-			sugerenciaSistema.realizarSugerencias(usuario);
-			
-			System.out.println("");
-			System.out.println("");
+			assertArrayEquals(arrayEsperadoPS,parteSuperior.toArray());
+			assertEquals(parteInferiorEsperado,parteInferior);
+			assertEquals(calzadoEsperado,calzado);
+			assertEquals(accesorioEsperado,accesorio);
 		}
 		
 		@Test
-		public void generarAtuendosConPrendasAnidadasParaVariosEventos() {
+		public void generarAtuendosConPrendasAnidadasParaDosEventos() {
+			
+			try {
+				servicioOpenWeather.establecerConexion();
+				servicioDarkSkyWeather.establecerConexion();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			adaptador.agregarServicio(servicioOpenWeather);
+			adaptador.agregarServicio(servicioDarkSkyWeather);
+			adaptador.setServicio();
+			trabajo.setTemperatura(buenosAires);
 							
 			usuario.agregarNuevoGuardarropa(guardarropa1);
 			usuario.agregarEvento(trabajo);
 			usuario.agregarEvento(bautismo);
-			usuario.agregarEvento(partido);
 			
 			guardarropa1.agregarIndumentaria(new Indumentaria(remera,algodon,"blanco"));
 			guardarropa1.agregarIndumentaria(new Indumentaria(camisaMangaLarga,algodon,"verde"));
 			guardarropa1.agregarIndumentaria(new Indumentaria(sueter,lana,"negro"));
+			guardarropa1.agregarIndumentaria(new Indumentaria(saco,tweed,"azulOscuro"));
 			guardarropa1.agregarIndumentaria(new Indumentaria(campera,polar,"negro"));
-				
+
 			guardarropa1.agregarIndumentaria(new Indumentaria(pantalon,algodon,"azulOscuro"));
 			guardarropa1.agregarIndumentaria(new Indumentaria(zapatos,cuero,"negro"));
 			guardarropa1.agregarIndumentaria(new Indumentaria(bufanda,lana,"rojo"));
-				
+
 			sugerenciaSistema.realizarSugerencias(usuario);
 			
-			System.out.println("");
-			System.out.println("");
+			Atuendo atuendo = guardarropa1.getAtuendos().get(0);
+			Atuendo otroAtuendo = guardarropa1.getAtuendos().get(1);
+			
+			List<String> parteSuperior = atuendo.getParteSuperior();
+			String parteInferior = atuendo.getParteInferior();
+			String calzado = atuendo.getCalzado();
+			String accesorio = atuendo.getAccesorio();
+			
+			List<String> parteSuperior1 = otroAtuendo.getParteSuperior();
+			String parteInferior1 = otroAtuendo.getParteInferior();
+			String calzado1 = otroAtuendo.getCalzado();
+			String accesorio1 = otroAtuendo.getAccesorio();
+			
+			String[] arrayEsperadoPS = {"remera" , "camisaMangaLarga" , "sueter" ,"campera"};
+			String parteInferiorEsperado = "pantalon";
+			String calzadoEsperado = "zapatos";
+			String accesorioEsperado = "bufanda";
+			
+			String[] arrayEsperadoPS1 = {"remera" , "camisaMangaLarga" , "saco" ,"campera"};
+			String parteInferiorEsperado1 = "pantalon";
+			String calzadoEsperado1 = "zapatos";
+			String accesorioEsperado1 = "bufanda";
+			
+			assertArrayEquals(arrayEsperadoPS,parteSuperior.toArray());
+			assertEquals(parteInferiorEsperado,parteInferior);
+			assertEquals(calzadoEsperado,calzado);
+			assertEquals(accesorioEsperado,accesorio);
+			
+			assertArrayEquals(arrayEsperadoPS1,parteSuperior1.toArray());
+			assertEquals(parteInferiorEsperado1,parteInferior1);
+			assertEquals(calzadoEsperado1,calzado1);
+			assertEquals(accesorioEsperado1,accesorio1);
 		}
-		*/
 }
