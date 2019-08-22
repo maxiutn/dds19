@@ -1,7 +1,8 @@
 package clases;
+import java.util.List;
 
 public interface I_SugerenciaStrategy {
 	
-	public void generarSugerencias(Usuario usuario);
+	public List<Atuendo> generarSugerencias(Usuario usuario);
 
 }

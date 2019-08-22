@@ -8,7 +8,7 @@ public class Usuario {
 	private List<Guardarropa> guardarropas;
 	private String nombre;
 	protected String tipoDeUsuario;
-	//private SugerenciaStrategy sugerencia;
+	//private Sugerencia sugerencia = new Sugerencia();
 	private List<Evento> eventos;
 	
 	public Usuario(String nombre, String categoria) {
@@ -51,6 +51,7 @@ public class Usuario {
 	/*
 	public void setSugerencia(SugerenciaStrategy sugerencia) {
 		this.sugerencia = sugerencia;
+		sugerencia.realizarSugerencias(self);
 	}
 	*/
 	

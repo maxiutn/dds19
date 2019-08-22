@@ -6,7 +6,7 @@ import java.util.List;
 
 public class SugerenciaVerano implements I_SugerenciaStrategy{
 	
-	public void generarSugerencias(Usuario usuario){
+	public List<Atuendo> generarSugerencias(Usuario usuario){
 		
 			List<Atuendo> listaAtuendos = new ArrayList<Atuendo>();
 			List<Guardarropa> listGuardarropas = usuario.guardarropas();
@@ -27,5 +27,6 @@ public class SugerenciaVerano implements I_SugerenciaStrategy{
 			for(Atuendo a: listaAtuendos) {
 				System.out.println(a.toString());
 			}
+			return listaAtuendos;
 	}
 }

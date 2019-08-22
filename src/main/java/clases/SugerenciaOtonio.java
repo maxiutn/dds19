@@ -9,7 +9,7 @@ public class SugerenciaOtonio implements I_SugerenciaStrategy{
 
 	List<List<Indumentaria>> listaPrendasSuperiorAnidadas;
 	
-	public void generarSugerencias(Usuario usuario) {
+	public List<Atuendo> generarSugerencias(Usuario usuario) {
 		
 			this.listaPrendasSuperiorAnidadas = new ArrayList<List<Indumentaria>>();
 			List<Atuendo> listaAtuendos = new ArrayList<Atuendo>();
@@ -32,6 +32,7 @@ public class SugerenciaOtonio implements I_SugerenciaStrategy{
 			for(Atuendo a: listaAtuendos) {
 				System.out.println(a.toString());
 			}
+			return listaAtuendos;
 	}
 	
 	public void generarPrendasAnidadas(Guardarropa g) {

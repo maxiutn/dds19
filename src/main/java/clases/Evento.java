@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalDate;
 
 public class Evento {
@@ -8,6 +10,7 @@ public class Evento {
 	private LocalDate fechaEncuentro;
 	private Ubicacion ubicacion;
 	private double temperatura;
+	private List<Atuendo> sugerencias;
 	private AdapterI adapterClima;
 	
 	public Evento(String evento, LocalDate fecha, Ubicacion ubicacion,AdapterI unAdapter) {
@@ -36,5 +39,25 @@ public class Evento {
 	
 	public void setTemperatura(Ubicacion unaUbicacion) {
 		this.temperatura = this.adapterClima.recibirTemperatura(unaUbicacion);
+	}
+	
+	public List<Atuendo> getSugerencias() {
+		return this.sugerencias;
+	}
+	
+	public void setSugerencias(List<Atuendo> atuendos) {
+		this.sugerencias = atuendos;
+	}
+	
+	public void rechazarSugerencia(Atuendo atuendo) {
+		this.sugerencias.remove(atuendo);
+	}
+	
+	public void aceptarSugerencia(Guardarropa ropero, Atuendo atuendo) {
+		ropero.agregarAtuendo(atuendo);
+	}
+	
+	public void deshacerSugerencias(){
+		this.sugerencias.removeAll(this.sugerencias);
 	}
 }
