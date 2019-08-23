@@ -9,31 +9,38 @@ public class SugerenciaInvierno implements I_SugerenciaStrategy {
 	
 	List<List<Indumentaria>> listaPrendasSuperiorAnidadas;
 
-	public List<Atuendo> generarSugerencias(Usuario usuario){
+	public List<Atuendo> generarSugerencias(Usuario usuario,Evento unEvento){
 		
 			this.listaPrendasSuperiorAnidadas = new ArrayList<List<Indumentaria>>();
-			List<Atuendo> listaAtuendos = new ArrayList<Atuendo>();
+			List<Atuendo> atuendosGenerados = new ArrayList<Atuendo>();
 			List<Guardarropa> listGuardarropas = usuario.guardarropas();
+			
 		
 			for(Guardarropa g: listGuardarropas){
 				this.generarPrendasAnidadas(g);
 				for(List<Indumentaria> prendasSuperpuestas : this.getListaPrendasSuperiorAnidadas()) {
 					for(Indumentaria ii: g.getIndumentariasInferior()) {
 						for(Indumentaria c: g.getIndumentariasCalzado()) {
-							listaAtuendos.add(new Atuendo(g,prendasSuperpuestas,ii,c));
+							Atuendo atuendoSinAccesorio = new Atuendo(prendasSuperpuestas,ii,c);
+							atuendoSinAccesorio.setPerteneceA(g);
+							atuendoSinAccesorio.setAtuendoPara(unEvento);
+							atuendosGenerados.add(atuendoSinAccesorio);
 							for(Indumentaria a: g.getIndumentariasAccesorio()) {
-								g.agregarAtuendo(new Atuendo(g,prendasSuperpuestas,ii,c,a));
+								Atuendo atuendoConAccesorio = new Atuendo(prendasSuperpuestas,ii,c,a);
+								atuendoConAccesorio.setPerteneceA(g);
+								atuendoConAccesorio.setAtuendoPara(unEvento);
+								atuendosGenerados.add(atuendoConAccesorio);
 							}
 						}
 					}
 				}
 			}
 			/*
-			for(Atuendo a: listaAtuendos) {
-				System.out.println(a.toString());
+			for(Atuendo atuendo: atuendosGenerados) {
+				System.out.println(atuendo.toString());
 			}
 			*/
-			return listaAtuendos;
+			return atuendosGenerados;
 	}
 
 	public void generarPrendasAnidadas(Guardarropa g) {

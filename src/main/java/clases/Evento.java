@@ -1,6 +1,5 @@
 package clases;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
@@ -10,14 +9,15 @@ public class Evento {
 	private LocalDate fechaEncuentro;
 	private Ubicacion ubicacion;
 	private double temperatura;
-	private List<Atuendo> sugerencias;
-	private AdapterI adapterClima;
+	private List<Indumentaria> condicionDelUsuario;
+	private List<Atuendo> sugerenciasAceptadas;
+	//private AdapterI adapterClima;
 	
-	public Evento(String evento, LocalDate fecha, Ubicacion ubicacion,AdapterI unAdapter) {
+	public Evento(String evento, LocalDate fecha, Ubicacion ubicacion) {
 		this.descripcion = evento;
 		this.fechaEncuentro = fecha;
 		this.ubicacion = ubicacion;
-		this.adapterClima = unAdapter;
+		//this.adapterClima = unAdapter;
 	}
 	
 	public Ubicacion getUbicacion() {
@@ -36,18 +36,26 @@ public class Evento {
 		return this.temperatura;
 	}
 	
-	public void setTemperatura(Ubicacion unaUbicacion) {
-		this.temperatura = this.adapterClima.recibirTemperatura(unaUbicacion);
+	public void setCondicionDelUsuario(List<Indumentaria> condicion) {
+		this.condicionDelUsuario = condicion;
 	}
 	
-	public List<Atuendo> getSugerencias() {
-		return this.sugerencias;
+	public List<Indumentaria> getCondicionDelUsuario() {
+		return this.condicionDelUsuario;
 	}
 	
-	public void setSugerencias(List<Atuendo> atuendos) {
-		this.sugerencias = atuendos;
+	public void setTemperatura(double unaTemperatura) {
+		this.temperatura = unaTemperatura;  //this.adapterClima.recibirTemperatura(unaUbicacion);
 	}
 	
+	public List<Atuendo> getSugerenciasAceptadas() {
+		return this.sugerenciasAceptadas;
+	}
+	
+	public void setSugerenciasAceptadas(List<Atuendo> atuendos) {
+		this.sugerenciasAceptadas = atuendos;
+	}
+	/*
 	public void rechazarSugerencia(Atuendo atuendo) {
 		this.sugerencias.remove(atuendo);
 	}
@@ -59,4 +67,5 @@ public class Evento {
 	public void deshacerSugerencias(){
 		this.sugerencias.removeAll(this.sugerencias);
 	}
+	*/
 }

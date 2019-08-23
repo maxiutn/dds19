@@ -9,7 +9,7 @@ public class SugerenciaPrimavera implements I_SugerenciaStrategy{
 
 	List<List<Indumentaria>> listaPrendasSuperiorAnidadas;
 	
-	public List<Atuendo> generarSugerencias(Usuario usuario) {
+	public List<Atuendo> generarSugerencias(Usuario usuario,Evento unEvento) {
 		
 			this.listaPrendasSuperiorAnidadas = new ArrayList<List<Indumentaria>>();
 			List<Atuendo> listaAtuendos = new ArrayList<Atuendo>();
@@ -20,18 +20,25 @@ public class SugerenciaPrimavera implements I_SugerenciaStrategy{
 				for(List<Indumentaria> prendasSuperpuestas : this.getListaPrendasSuperiorAnidadas()) {
 					for(Indumentaria ii: g.getIndumentariasInferior()) {
 						for(Indumentaria c: g.getIndumentariasCalzado()) {
-							listaAtuendos.add(new Atuendo(g,prendasSuperpuestas,ii,c));
+							Atuendo atuendoSinAccesorio = new Atuendo(prendasSuperpuestas,ii,c);
+							atuendoSinAccesorio.setPerteneceA(g);
+							atuendoSinAccesorio.setAtuendoPara(unEvento);
+							listaAtuendos.add(atuendoSinAccesorio);
 							for(Indumentaria a: g.getIndumentariasAccesorio()) {
-								listaAtuendos.add(new Atuendo(g,prendasSuperpuestas,ii,c,a));
+								Atuendo atuendoConAccesorio = new Atuendo(prendasSuperpuestas,ii,c,a);
+								atuendoConAccesorio.setPerteneceA(g);
+								atuendoConAccesorio.setAtuendoPara(unEvento);
+								listaAtuendos.add(atuendoConAccesorio);
 							}
 						}
 					}
 				}
 			}
-		
+			/*
 			for(Atuendo a: listaAtuendos) {
 				System.out.println(a.toString());
 			}
+			*/
 			return listaAtuendos;
 	}
 	

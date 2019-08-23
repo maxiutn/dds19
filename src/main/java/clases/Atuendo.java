@@ -1,11 +1,13 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Atuendo {
 	
-	private Guardarropa guardarropa;
+	private String perteneceA;
+	private String atuendoPara;
 	private List<Indumentaria> parteSuperior;
 	private Indumentaria parteInferior;
 	private Indumentaria calzado;
@@ -29,19 +31,45 @@ public class Atuendo {
 		this.calzado = c;
 	}*/
 	
-	public Atuendo(Guardarropa g,List<Indumentaria> ps, Indumentaria pi, Indumentaria c, Indumentaria accs) {
-		this.guardarropa = g;
+	public Atuendo(List<Indumentaria> ps, Indumentaria pi, Indumentaria c, Indumentaria accs) {
 		this.parteSuperior = ps;
 		this.parteInferior = pi;
 		this.calzado = c;
 		this.accesorio = accs;
 	}
 	
-	public Atuendo(Guardarropa g, List<Indumentaria> ps, Indumentaria pi, Indumentaria c) {
-		this.guardarropa = g;
+	public Atuendo(List<Indumentaria> ps, Indumentaria pi, Indumentaria c) {
 		this.parteSuperior = ps;
 		this.parteInferior = pi;
 		this.calzado = c;
+	}
+	
+	public String getPerteneceA() {
+		return this.perteneceA;
+	}
+	
+	public void setPerteneceA(Guardarropa unGuardarropa) {
+		this.perteneceA = unGuardarropa.getDescripcion();
+	}
+	
+	public String getAtuendoPara() {
+		return this.atuendoPara;
+	}
+	
+	public void setAtuendoPara(Evento unEvento) {
+		this.atuendoPara = unEvento.getDescripcion();
+	}
+	
+	public List<Indumentaria> getAtuendo() { //para que me devuelva una lista con las indumentarias que forman el atuendo
+		List<Indumentaria> atuendo = new ArrayList<Indumentaria>();
+		
+		atuendo.addAll(parteSuperior);
+		atuendo.add(parteInferior);
+		atuendo.add(calzado);
+		if(this.accesorio != null) {
+			atuendo.add(accesorio);
+		}
+		return atuendo;
 	}
 	
 	public List<String> getParteSuperior() {
@@ -68,7 +96,7 @@ public class Atuendo {
 			listado = listado + i.toString();
 		}
 		
-		String valor  =  "Atuendo [guardarropa=" + guardarropa.toString() + ", parteSuperior=" + listado + ", parteInferior=" + parteInferior.toString() + ", calzado=" + calzado.toString();
+		String valor  =  "Atuendo [guardarropa=" + this.getPerteneceA() + ", atuendoPara=" + this.getAtuendoPara() + ", parteSuperior=" + this.parteSuperior + ", parteInferior=" + this.parteInferior.toString() + ", calzado=" + calzado.toString();
 				
 		if(accesorio != null) {
 			valor = valor + ",accesorio=" + accesorio.toString() +"]";
