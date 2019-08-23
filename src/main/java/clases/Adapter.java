@@ -2,6 +2,7 @@ package clases;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Adapter implements AdapterI {
 	
@@ -13,20 +14,20 @@ public class Adapter implements AdapterI {
 	}
 	
 	public void setServicio() {
-		for(ServicioClima servicio: this.servicios) {
-			if(servicio.estaDisponible()) {
-				this.servicio = servicio;
-				break;
-			}
+		Optional<ServicioClima> respuesta = this.servicios.stream().findAny();
+		if(respuesta.isPresent()) {
+			this.servicio = respuesta.get();
+		} else {
+			this.servicio = null;
 		}
-	}
-	
-	public boolean noHayServicio() {
-		return this.servicio == null;
 	}
 	
 	public void agregarServicio(ServicioClima unServicio) {
 		this.servicios.add(unServicio);
+	}
+	
+	public boolean noHayServicio() {
+		return this.servicio == null;
 	}
 	
 	public String servicio() {

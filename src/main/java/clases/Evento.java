@@ -18,7 +18,6 @@ public class Evento {
 		this.fechaEncuentro = fecha;
 		this.ubicacion = ubicacion;
 		this.adapterClima = unAdapter;
-		//this.temperatura = this.adapterClima.recibirTemperatura(this.ubicacion);
 	}
 	
 	public Ubicacion getUbicacion() {

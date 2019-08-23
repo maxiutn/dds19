@@ -1,7 +1,5 @@
 package clases;
 
-import java.io.IOException;
-
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -15,59 +13,24 @@ public class TestAPIs {
 		Adapter adaptador = new Adapter();
 			
 		@Test
-		public void establecerConexionesAPIs() {
-			try {
-				servicioOpenWeather.establecerConexion();
-				servicioDarkSkyWeather.establecerConexion();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			assertTrue(servicioOpenWeather.estaDisponible());
-			assertTrue(servicioDarkSkyWeather.estaDisponible());
+		public void establecerServicioA() {
+			adaptador.agregarServicio(servicioOpenWeather);
+			adaptador.agregarServicio(servicioDarkSkyWeather);
+			adaptador.setServicio();
+			
+			assertEquals("OpenWeather",servicioOpenWeather.servicio());
 		}
 			
 		@Test
-		public void fallarConexionesAPIs() {
-			servicioOpenWeather.verificarConexion(404);
-			servicioDarkSkyWeather.verificarConexion(404);
-			assertFalse(servicioOpenWeather.estaDisponible());
-			assertFalse(servicioDarkSkyWeather.estaDisponible());
-		}
-		
-		@Test
-		public void establecerServicioOpenWeather() {
-			try {
-				servicioOpenWeather.establecerConexion();
-				servicioDarkSkyWeather.establecerConexion();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			adaptador.agregarServicio(servicioOpenWeather);
+		public void establecerServicioB() {
 			adaptador.agregarServicio(servicioDarkSkyWeather);
 			adaptador.setServicio();
-			assertEquals(adaptador.servicio(),"OpenWeather");
-		}
-		
-		@Test
-		public void establecerServicioDarkSkyWeather() {
-			servicioOpenWeather.verificarConexion(404);
-			try {
-				servicioDarkSkyWeather.establecerConexion();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			adaptador.agregarServicio(servicioOpenWeather);
-			adaptador.agregarServicio(servicioDarkSkyWeather);
-			adaptador.setServicio();
-			assertEquals(adaptador.servicio(),"DarkSkyWeather");
+			
+			assertEquals("DarkSkyWeather",adaptador.servicio());
 		}
 		
 		@Test
 		public void noHayServicio() {
-			servicioOpenWeather.verificarConexion(404);
-			servicioDarkSkyWeather.verificarConexion(404);
-			adaptador.agregarServicio(servicioOpenWeather);
-			adaptador.agregarServicio(servicioDarkSkyWeather);
 			adaptador.setServicio();
 			assertTrue(adaptador.noHayServicio());
 		}
