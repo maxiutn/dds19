@@ -12,6 +12,7 @@ public class Atuendo {
 	private Indumentaria parteInferior;
 	private Indumentaria calzado;
 	private Indumentaria accesorio;
+	private Imagen imagen;
 	
 	/*
 	public Atuendo(Guardarropa g,Indumentaria ps, Indumentaria pi, Indumentaria c, Indumentaria accs) {
@@ -104,5 +105,13 @@ public class Atuendo {
 			valor = valor + ",accesorio= null]";
 		}
 		return valor;
+	}
+	
+	public void subirImagen(String direccionWeb){
+		this.imagen = new Imagen(direccionWeb);
+	}
+	
+	public Imagen getImagen(){
+		return this.imagen;
 	}
 }
