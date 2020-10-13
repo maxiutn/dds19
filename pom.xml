@@ -9,7 +9,7 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<junit.v>4.12</junit.v>
+		<junit.v>4.13.1</junit.v>
 		<junit.v5>5.1.0</junit.v5>
 
 	</properties>
